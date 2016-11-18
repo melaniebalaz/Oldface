@@ -42,7 +42,7 @@ public class LoginController extends HttpServlet {
 		String password = request.getParameter("password");
 		
 		UserManager usrMgmt = new UserManager();
-		usrMgmt.authenticate(username, password);
+		User user = usrMgmt.authenticate(username, password);
 		
 		
 		doGet(request, response);
