@@ -11,7 +11,7 @@ import at.omaha17.oldface.model.User;
 import at.omaha17.oldface.logic.UserManager;
 
 /**
- * Servlet implementation class LoginController
+ * Servlet implementation class LoginController random comment
  */
 @WebServlet("/index")
 public class LoginController extends HttpServlet {
