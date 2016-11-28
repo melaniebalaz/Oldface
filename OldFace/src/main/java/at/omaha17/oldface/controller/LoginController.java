@@ -7,19 +7,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import at.omaha17.oldface.logic.UserManagerInterface;
 import at.omaha17.oldface.model.User;
-import at.omaha17.oldface.logic.UserManager;
 
 /**
  * Servlet implementation class LoginController
  */
-@WebServlet("/index")
+@WebServlet("/login")
 public class LoginController extends HttpServlet {
+
+	UserManagerInterface manager;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginController() {
+    public LoginController(UserManagerInterface manager) {
+        this.manager = manager;
     }
 
 	/**
@@ -32,7 +35,11 @@ public class LoginController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //manager.authenticate();
 
+        response.setHeader("Set-Cookie", "authenticationToken=" );
 	}
+
+	//After login redirect to Wall
 
 }
