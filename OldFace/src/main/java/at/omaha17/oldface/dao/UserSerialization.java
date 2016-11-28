@@ -3,6 +3,6 @@ import java.util.List;
 
 import at.omaha17.oldface.model.User;
 
-public interface UserDAO {
+public class UserSerialization implements UserDAO {
 
 }
