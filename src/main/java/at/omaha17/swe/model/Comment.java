@@ -1,6 +1,6 @@
 package at.omaha17.swe.model;
 
-//test2
+//test3 von stand PC
 
 public class Comment extends Message{
 }
