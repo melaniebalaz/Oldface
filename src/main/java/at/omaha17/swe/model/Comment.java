@@ -1,6 +1,6 @@
 package at.omaha17.swe.model;
 
-//just testing if the push works
+//test1
 
 public class Comment extends Message{
 }
