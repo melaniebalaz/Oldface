@@ -9,7 +9,7 @@ public interface UserManagerInterface {
 
     public User getUser(String authenticationToken);
 
-    public Senior createRetiree(String email, String password, String displayName);
+    public Senior createSenior(String email, String password, String displayName);
 
     public User createUser(String role, String email, String password);
 }
