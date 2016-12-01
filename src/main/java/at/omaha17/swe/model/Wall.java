@@ -1,8 +1,6 @@
 package at.omaha17.swe.model;
 
 import java.util.Vector;
-import at.omaha17.swe.model.Post;
-import at.omaha17.swe.model.Senior;
 
 public class Wall {
 	

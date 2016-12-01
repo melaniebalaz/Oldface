@@ -2,8 +2,7 @@ package at.omaha17.swe.model;
 
 import java.util.Calendar;
 import java.util.Vector;
-import at.omaha17.swe.model.Wall;
-import at.omaha17.swe.model.Post;
+
 
 public class Senior extends User {
     
