@@ -4,6 +4,7 @@ import at.omaha17.swe.dao.WallDAO;
 import at.omaha17.swe.dao.WallDAOSerialization;
 import at.omaha17.swe.model.Comment;
 import at.omaha17.swe.model.Post;
+import at.omaha17.swe.model.Wall;
 
 public class WallManagerImpl implements WallManager {
 
@@ -11,6 +12,10 @@ public class WallManagerImpl implements WallManager {
 
     public WallManagerImpl() {
         this.wallDAO = new WallDAOSerialization("WallDB.ser");
+    }
+
+    public void saveWall(Wall wall) {
+        wallDAO.saveWall(wall);
     }
 
     public Post addPost(String post){
