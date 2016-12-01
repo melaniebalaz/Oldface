@@ -1,16 +1,18 @@
 package at.omaha17.swe.model;
 
 import java.util.Calendar;
+import java.util.Vector;
 import at.omaha17.swe.model.Wall;
+import at.omaha17.swe.model.Post;
 
 public class Senior extends User {
-    private Wall wall;
+    
+	private Wall wall;
     
 
     public Senior(String role, String email, String password, Calendar creation_date, Calendar login_date) {
         
     	super(role, email, password, creation_date, login_date);
-        this.wall = new Wall();
     }
 
     public void blockUser() {

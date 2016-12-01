@@ -1,19 +1,28 @@
 package at.omaha17.swe.model;
 
 import java.util.Vector;
-import at.omaha17.swe.model.*;
-public class Wall {
-	private Senior senior;
-    Vector<Post> posts;
+import at.omaha17.swe.model.Post;
+import at.omaha17.swe.model.Senior;
 
-	public Wall(Vector<Post> posts) {
-		super();
-		this.posts = posts;
+public class Wall {
+	
+	private Senior senior;
+    
+	Vector<Post> posts;
+
+	//Kann es sein dass der Wall bei der Kreation leer ist, da er mit einem neuem User kreiert wird 
+	//(wir erst später mit posts befüllt?
+	
+	public Wall() {
 		
 	}
 
-	/*public Wall() {
-		super();
-	} falls ohne Vector*/
+	public Vector<Post> getPosts() {
+		return posts;
+	}
+
+	public void setPosts(Vector<Post> posts) {
+		this.posts = posts;
+	}
     
 }
