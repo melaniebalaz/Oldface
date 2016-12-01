@@ -2,8 +2,8 @@ package at.omaha17.swe.model;
 
 public class Post extends Message{
 	
-	public Post(String Content){
-		super(Content);
+	public Post(String text){
+		super(text);
 		
 		try{setCreation_date();}
 		
