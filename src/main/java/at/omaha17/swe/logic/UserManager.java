@@ -25,7 +25,7 @@ public class UserManager implements UserManagerInterface {
         return null;
     }
 
-    public Senior createRetiree(String email, String password, String displayName){
+    public Senior createSenior(String email, String password, String displayName){
         return null;
     }
 
