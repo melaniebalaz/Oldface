@@ -1,8 +1,5 @@
 package at.omaha17.swe.model;
 
-import java.util.Calendar;
-import java.util.Vector;
-
 
 public class Senior extends User {
     
