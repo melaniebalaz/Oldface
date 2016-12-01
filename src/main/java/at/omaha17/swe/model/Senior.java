@@ -7,7 +7,6 @@ import java.util.Vector;
 public class Senior extends User {
     
 	private Wall wall;
-    
 
     public Senior(String role, String email, String password) {
         
