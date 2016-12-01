@@ -1,7 +1,6 @@
 package at.omaha17.swe.controller;
 
-import at.omaha17.swe.logic.WallManagerInterface;
-import at.omaha17.swe.model.Wall;
+import at.omaha17.swe.logic.WallManager;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,9 +11,9 @@ import java.io.IOException;
 
 @WebServlet("/wall")
 public class WallPostController extends HttpServlet {
-    WallManagerInterface manager;
+    WallManager manager;
 
-    public WallPostController(WallManagerInterface manager){
+    public WallPostController(WallManager manager){
         this.manager = manager;
     }
 

@@ -1,35 +1,23 @@
 package at.omaha17.swe.logic;
 
-import at.omaha17.swe.dao.UserDAOInterface;
 import at.omaha17.swe.model.Senior;
 import at.omaha17.swe.model.User;
 
-public class UserManager implements UserManagerInterface {
+public interface UserManager {
 
-    UserDAOInterface dao;
+    public String authenticateUser(String username, String password) throws AuthenticationFailedException;
 
-    public UserManager(UserDAOInterface dao){
-        this.dao = dao;
-    }
+    public User getUser(String authenticationToken);
 
-    public String authenticate(String email, String password) throws AuthenticationFailedException{
-       return "AuthenticationToken";
-    }
+    public Senior createSenior(String username, String password, String displayName);
 
-    /**
-     * Fetch the current user
-     * @param authenticationToken Token by which to identify a user
-     * @return a User identified by this token
-     */
-    public User getUser(String authenticationToken){
-        return null;
-    }
+    public User createUser(String role, String username, String password);
 
-    public Senior createSenior(String email, String password, String displayName){
-        return null;
-    }
+    public void getDashboard();
 
-    public User createUser(String role, String email, String password){
-        return null;
-    }
+//    public void blockSenior();
+//    public void changeProfile();
+//    public void findSenior();
+//    public void followSenior();
+//    public void findFriends();
 }

@@ -1,25 +1,26 @@
 package at.omaha17.swe.model;
 
+import java.io.Serializable;
 import java.util.Vector;
 
-
-public class Wall {
-	
-	private Senior senior;
+public class Wall implements Serializable {
     
-	Vector<Post> posts;
-
-	//Kann es sein dass der Wall bei der Kreation leer ist, da er mit einem neuem User kreiert wird 
-	//(wir erst später mit posts befüllt?
+	private int wallid;
+	private String username; //indirect user relation (due to DAO separation)
+	private Vector<Post> posts;
 	
-	public Wall() {}
+	public Wall(String username) {
+	    // auto-gen wallid
+	    this.username = username;
+
+    }
 
 	public Vector<Post> getPosts() {
-		return posts;
+	    return posts;
 	}
 
 	public void setPosts(Vector<Post> posts) {
-		this.posts = posts;
+	    this.posts = posts;
 	}
-	}
+}
 

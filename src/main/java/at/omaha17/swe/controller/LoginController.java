@@ -7,8 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import at.omaha17.swe.logic.UserManagerInterface;
-import at.omaha17.swe.model.User;
+import at.omaha17.swe.logic.UserManager;
 
 /**
  * Servlet implementation class LoginController
@@ -16,12 +15,12 @@ import at.omaha17.swe.model.User;
 @WebServlet("/login")
 public class LoginController extends HttpServlet {
 
-	UserManagerInterface manager;
+	UserManager manager;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginController(UserManagerInterface manager) {
+    public LoginController(UserManager manager) {
         this.manager = manager;
     }
 

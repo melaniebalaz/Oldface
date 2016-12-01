@@ -4,43 +4,33 @@ import java.util.Calendar;
 
 public abstract class Message {
     
-	protected Calendar creation_date;
-
-	private String text;
+	private Calendar creationDate;
+	private String content;
+	private String author; //saves username (indirect relation to user)
 	
-	public Message(String text){
-		try{
-			setCreation_date();
-			setContent(text);
-		}
-		catch (IllegalArgumentException a) {System.out.println(a);}
+	public Message(String content){
+		setCreationDate();
+		setContent(content);
 	}
 	
-	public Calendar getCreation_date() {
-		return creation_date;}
+	public Calendar getCreationDate() {
+		return creationDate;}
 
-	public void setCreation_date() {
+	public void setCreationDate() {
 		Calendar jetzt = Calendar.getInstance();
-		this.creation_date = jetzt;}
+		this.creationDate = jetzt;
+	}
 
 	public String getContent() {
-		return text;}
+		return content;
+	}
 
-	public void setContent(String Text) {
-		if (Text != null){
-			this.text = Text;
-			}
-		
-		else
-		{throw new IllegalArgumentException ("Message has to have content");
+	public void setContent(String content) {
+		if (content != null){
+			this.content = content;
+		} else {
+		    throw new IllegalArgumentException ("Message has to have content");
 		}
 	}
-	
-	public void deleteMessage(){
-		
-	}
-	
-	public void likeMessage(){
-		
-	}
+
 }

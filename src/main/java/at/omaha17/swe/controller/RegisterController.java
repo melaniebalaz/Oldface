@@ -1,6 +1,6 @@
 package at.omaha17.swe.controller;
 
-import at.omaha17.swe.logic.UserManagerInterface;
+import at.omaha17.swe.logic.UserManager;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,9 +14,9 @@ import java.io.IOException;
  */
 @WebServlet("/register")
 public class RegisterController extends HttpServlet {
-    UserManagerInterface manager;
+    UserManager manager;
 
-    public RegisterController(UserManagerInterface manager) {
+    public RegisterController(UserManager manager) {
         this.manager = manager;
     }
 

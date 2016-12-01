@@ -1,14 +1,31 @@
 package at.omaha17.swe.model;
 
+import java.util.Vector;
 
+public class Post extends Message {
 
-public class Post extends Message{
-	
-	public Post(String text){
-		super(text);
-		
-		try{setCreation_date();}
-		
-		catch (IllegalArgumentException a) {System.out.println(a);}
-	}
+	private Wall wall;
+    private Vector<Comment> comments;
+
+    public Post(String content){
+        super(content);
+
+    }
+
+    public Wall getWall() {
+        return wall;
+    }
+
+    public void setWall(Wall wall) {
+        this.wall = wall;
+    }
+
+    public Vector<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(Vector<Comment> comments) {
+        this.comments = comments;
+    }
+
 }

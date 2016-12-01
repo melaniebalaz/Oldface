@@ -1,38 +1,32 @@
 package at.omaha17.swe.model;
 
-
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Vector;
 
-public class User {
+public class User implements Serializable {
     public final static String ROLE_SENIOR = "Senior";
     public final static String ROLE_ADMIN = "Admin";
     public final static String ROLE_RESEARCHER = "Researcher";
 
-	private String role = ROLE_SENIOR;
-    private String email;
+	private String role;
+    private String username;
     private String password;
-    //private String displayName;
-    private Calendar creation_date;
-    private Calendar login_date;
+    private Calendar creationDate;
+    private Calendar loginDate;
     private Vector<String> authenticationTokens;
 
 
-    public User(String role, String email, String password) {
+    public User(String role, String username, String password) {
         this.role = role;
-        try{
-        	setEmail(email);
-        	setPassword(password);
-        	setCreation_date();
-        	setLogin_date();
-        }
-        catch (IllegalArgumentException a) {System.out.println(a);}
-        
+        this.creationDate = Calendar.getInstance();
+        setUsername(username);
+        setPassword(password);
+        setLoginDate();
     }
 
-    public String getEmail() {
-        return email;
+    public String getUsername() {
+        return username;
     }
 
     public String getPassword() {
@@ -40,34 +34,24 @@ public class User {
     }
     
     
-   	public void setEmail(String email) {
-		this.email = email;
+   	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
-	}
-	
-	public void setCreation_date() {
-    	
-		if(this.creation_date != null){}
-    	else {this.creation_date = Calendar.getInstance();}
-	}
-	
+        this.password = password;
+    }
 
-	public Calendar getCreation_date() {
-    	return creation_date;
+	public Calendar getCreationDate() {
+    	return creationDate;
 	}
 
-	public void setLogin_date() {
-		this.creation_date = Calendar.getInstance();
+	public void setLoginDate() {
+		this.creationDate = Calendar.getInstance();
 	}
 
-	public Calendar getLogin_date() {
-		return login_date;
+	public Calendar getLoginDate() {
+		return loginDate;
 	}
-	
-    /*public String getDisplayName() {
-        return displayName;
-    }*/
+
 }
