@@ -7,13 +7,11 @@ public class Wall {
     Vector<Post> posts;
 
 	public Wall(Vector<Post> posts) {
-		super();
+		
 		this.posts = posts;
-		this.senior = new Senior();
+		
 	}
 
-	/*public Wall() {
-		super();
-	} falls ohne Vector*/
+	
     
 }
