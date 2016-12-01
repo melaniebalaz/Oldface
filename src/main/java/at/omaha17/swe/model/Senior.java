@@ -2,8 +2,8 @@ package at.omaha17.swe.model;
 
 import java.util.Calendar;
 import java.util.Vector;
-import at.omaha17.swe.model.Wall;
-import at.omaha17.swe.model.Post;
+import java.util.Vector;
+
 
 public class Senior extends User {
     
@@ -12,7 +12,7 @@ public class Senior extends User {
 
     public Senior(String role, String email, String password, Calendar creation_date, Calendar login_date) {
         
-    	super(role, email, password, creation_date, login_date);
+    	super(role, email, password);
     }
 
     public void blockUser() {
