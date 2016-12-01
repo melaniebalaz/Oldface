@@ -1,15 +1,16 @@
 package at.omaha17.swe.logic;
 
-import at.omaha17.swe.dao.UserDAOInterface;
+import at.omaha17.swe.dao.UserDAO;
+import at.omaha17.swe.dao.UserDAOSerialization;
 import at.omaha17.swe.model.Senior;
 import at.omaha17.swe.model.User;
 
 public class UserManagerImpl implements UserManager {
 
-    private UserDAOInterface dao;
+    private UserDAO userDAO;
 
-    public UserManagerImpl(UserDAOInterface dao){
-        this.dao = dao;
+    public UserManagerImpl(){
+        this.userDAO = new UserDAOSerialization("UserDB.ser");
     }
 
     public String authenticateUser(String email, String password) throws AuthenticationFailedException{
