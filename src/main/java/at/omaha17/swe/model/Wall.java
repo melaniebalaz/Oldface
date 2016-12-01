@@ -9,7 +9,7 @@ public class Wall {
 	public Wall(Vector<Post> posts) {
 		super();
 		this.posts = posts;
-		this.senior = new Senior();
+		
 	}
 
 	/*public Wall() {
