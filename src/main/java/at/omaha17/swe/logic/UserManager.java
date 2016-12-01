@@ -1,7 +1,7 @@
 package at.omaha17.swe.logic;
 
 import at.omaha17.swe.dao.UserDAOInterface;
-import at.omaha17.swe.model.Retiree;
+import at.omaha17.swe.model.Senior;
 import at.omaha17.swe.model.User;
 
 public class UserManager implements UserManagerInterface {
@@ -25,7 +25,7 @@ public class UserManager implements UserManagerInterface {
         return null;
     }
 
-    public Retiree createRetiree(String email, String password, String displayName){
+    public Senior createRetiree(String email, String password, String displayName){
         return null;
     }
 

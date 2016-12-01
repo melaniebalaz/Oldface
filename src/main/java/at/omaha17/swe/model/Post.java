@@ -9,12 +9,4 @@ public class Post extends Message{
 		
 		catch (IllegalArgumentException a) {System.out.println(a);}
 	}
-	
-	public void addComment() {
-		
-	}
-	
-	public void getComments() {
-		
-	}
 }

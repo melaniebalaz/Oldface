@@ -19,16 +19,16 @@ public class User {
     private Vector<String> authenticationTokens;
 
 
-    public User(String role, String email, String password, Calendar creation_date, Calendar login_date) {
+    public User(String role, String email, String password) {
         this.role = role;
-        this.email = email;
-        this.password = password;
-        this.creation_date = creation_date;
-        this.login_date = login_date;
-    }
-
-    public String getRole() {
-        return role;
+        try{
+        	setEmail(email);
+        	setPassword(password);
+        	setCreation_date();
+        	setLogin_date();
+        }
+        catch (IllegalArgumentException a) {System.out.println(a);}
+        
     }
 
     public String getEmail() {
@@ -39,18 +39,28 @@ public class User {
         return password;
     }
     
-    public void setCreation_date(Calendar creation_date) {
-    	Calendar jetzt = Calendar.getInstance();
-		this.creation_date = jetzt;
-	}
     
-    public Calendar getCreation_date() {
+   	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	public void setCreation_date() {
+    	
+		if(this.creation_date != null){}
+    	else {this.creation_date = Calendar.getInstance();}
+	}
+	
+
+	public Calendar getCreation_date() {
     	return creation_date;
 	}
 
-	public void setLogin_date(Calendar login_date) {
-		Calendar jetzt = Calendar.getInstance();
-		this.creation_date = jetzt;
+	public void setLogin_date() {
+		this.creation_date = Calendar.getInstance();
 	}
 
 	public Calendar getLogin_date() {

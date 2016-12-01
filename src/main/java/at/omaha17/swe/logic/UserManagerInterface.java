@@ -1,6 +1,6 @@
 package at.omaha17.swe.logic;
 
-import at.omaha17.swe.model.Retiree;
+import at.omaha17.swe.model.Senior;
 import at.omaha17.swe.model.User;
 
 public interface UserManagerInterface {
@@ -9,7 +9,7 @@ public interface UserManagerInterface {
 
     public User getUser(String authenticationToken);
 
-    public Retiree createRetiree(String email, String password, String displayName);
+    public Senior createRetiree(String email, String password, String displayName);
 
     public User createUser(String role, String email, String password);
 }
