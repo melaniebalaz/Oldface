@@ -7,6 +7,7 @@ public class RegistrationFailedException extends Exception {
 
     public RegistrationFailedException(ReasonCode reason) {
         super(reason.toString());
+        this.reason = reason;
     }
 
     public RegistrationFailedException(ReasonCode reason, Throwable source) {

@@ -7,6 +7,7 @@ public class AuthenticationFailedException extends Exception {
 
     public AuthenticationFailedException(ReasonCode reason) {
         super(reason.toString());
+        this.reason = reason;
     }
 
     public AuthenticationFailedException(ReasonCode reason, Throwable source) {
