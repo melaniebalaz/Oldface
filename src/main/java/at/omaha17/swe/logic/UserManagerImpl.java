@@ -17,16 +17,16 @@ public class UserManagerImpl implements UserManager {
         this.wallManager = new WallManagerImpl();
     }
 
-    public User registerUser(String role, String username, String password) {
+    public User registerUser(String role, String username, String password) throws RegistrationFailedException {
         String passwordHash;
         User user;
 
-        //todo: check for existing username
+        if (userDAO.isUser(username))
+            throw new RegistrationFailedException(RegistrationFailedException.ReasonCode.EXISTING_USER);
 
-        try {
-            passwordHash = PasswordManager.createHash(password);
-        } catch (PasswordManager.CannotPerformOperationException e) {
-            e.printStackTrace(); return null;
+        try { passwordHash = PasswordManager.createHash(password); }
+        catch (PasswordManager.CannotPerformOperationException e) {
+            throw new RegistrationFailedException(RegistrationFailedException.ReasonCode.UNKNOWN, e);
         }
 
         if (role.equals(User.ROLE_SENIOR)) {
@@ -42,19 +42,17 @@ public class UserManagerImpl implements UserManager {
     }
 
     public User authenticateUser(String username, String password) throws AuthenticationFailedException {
-        User user = null;
+        User user;
 
         try {
             user = userDAO.getUserByUsername(username);
             if (!PasswordManager.verifyPassword(password, user.getPassword()))
-                throw new AuthenticationFailedException("Invalid password!");
+                throw new AuthenticationFailedException(AuthenticationFailedException.ReasonCode.INVALID_PASSWORD);
 
         } catch (UserNotFoundException e) {
-            throw new AuthenticationFailedException("Invalid username!");
-        } catch (PasswordManager.CannotPerformOperationException e) {
-            e.printStackTrace();
-        } catch (PasswordManager.InvalidHashException e) {
-            e.printStackTrace();
+            throw new AuthenticationFailedException(AuthenticationFailedException.ReasonCode.INVALID_USER);
+        } catch (PasswordManager.CannotPerformOperationException|PasswordManager.InvalidHashException e) {
+            throw new AuthenticationFailedException(AuthenticationFailedException.ReasonCode.UNKNOWN, e);
         }
 
         return user;

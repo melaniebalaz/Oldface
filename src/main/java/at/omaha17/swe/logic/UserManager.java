@@ -5,7 +5,7 @@ import at.omaha17.swe.model.User;
 
 public interface UserManager {
 
-    public User registerUser(String role, String username, String password);
+    public User registerUser(String role, String username, String password) throws RegistrationFailedException;
     public User authenticateUser(String username, String password) throws AuthenticationFailedException;
     public User getUser(String authenticationToken);
     public void getDashboard();
