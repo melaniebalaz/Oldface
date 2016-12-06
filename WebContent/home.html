@@ -6,12 +6,16 @@
 <title>Wall</title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
+
+<body>
+
 <nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container-fluid">
 
-	<div class="navbar-header">
-		<a class="brand" href="#"><img src="Logo2.png" height=80px/></a>
-	</div>
+
+<div class="navbar-header">
+    <a class="brand" href="#"><img src="img/Logo2.png" height=80px/></a>
+</div>
 
 
 	<ul class="nav navbar-nav navbar-right">
@@ -23,21 +27,19 @@
 
 	</div>
 </nav>
-<body>
-
 
 <div class="jumbotron">
 
 <h1><c:out value="${vorname}"/> <c:out value="${nachname}"/></h1>
-		<div  class="row">
+		<div  class="row" style="padding-left: 10px">
 			<div class="col-sm-3">
 				<br>
 				<br>
-				<img src="avatar.jpg" alt="Profilbild"  height=150px width=150px class="img-thumbnail"><br><br>
+				<img src="img/avatar.jpg" alt="Profilbild"  height=150px width=150px class="img-thumbnail"><br><br>
 				<form method="post" action="BenutzerServlet" name="editben">
 					<input type="hidden" name="select" value="editben">
 					<input type="hidden" name="curruser" value="${user }">
-					<input type="submit" class="btn btn-default" value="Profil bearbeiten">
+					<input type="submit" class="btn btn-default disabled" value="Profil bearbeiten">
 				</form><br>
 				<br>
 				
@@ -57,8 +59,9 @@
 				<br></br>
 				
 			</div>
-			<div class="jumbotron">
-			<div class="col-sm-3">
+	<div class="jumbotron">
+		<div class="container">
+			<div class="col-sm-6">
 				<form method="post" action="BenutzerServlet" name="kurzbeschreibung">
 				Kurzbeschreibung: <c:out value="${kurzbeschreibung}"/> <br>
 				</form>
@@ -96,6 +99,7 @@
 		
 			</div>
 		</div>
+	</div>
 		
 	
 	<br><br>
