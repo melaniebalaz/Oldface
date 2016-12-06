@@ -94,4 +94,23 @@ public class UserDAOSerialization implements UserDAO {
         return userList;
     }
 
+    @SuppressWarnings("unchecked")
+    public boolean isUser(String username) {
+        Vector<User> userList;
+        ObjectInputStream objectInputStream;
+
+        try {
+            objectInputStream = new ObjectInputStream(new FileInputStream(filename));
+            userList = (Vector<User>) objectInputStream.readObject();
+            objectInputStream.close();
+
+            for (User user : userList)
+                if (user.getUsername().equals(username)) return true;
+
+
+        } catch (IOException|ClassNotFoundException e) { e.printStackTrace(); }
+
+        return false;
+    }
+
 }
