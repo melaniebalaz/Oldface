@@ -16,20 +16,25 @@ public class UserDAOSerialization implements UserDAO {
     @SuppressWarnings("unchecked")
     public void saveUser(User user) {
         Vector<User> userList;
+        File file;
         ObjectInputStream objectInputStream;
         ObjectOutputStream objectOutputStream;
 
         try {
-            objectInputStream = new ObjectInputStream(new FileInputStream(filename));
-            userList = (Vector<User>) objectInputStream.readObject();
-            objectInputStream.close();
+            file = new File(filename);
+            if (file.exists()) {
+                objectInputStream = new ObjectInputStream(new FileInputStream(file));
+                userList = (Vector<User>) objectInputStream.readObject();
+                objectInputStream.close();
+            } else
+                userList = new Vector<User>();
 
             for (User usr : userList)
                 if (usr.getUsername().equals(user.getUsername())) userList.remove(usr);
 
             userList.add(user);
 
-            objectOutputStream = new ObjectOutputStream(new FileOutputStream(filename));
+            objectOutputStream = new ObjectOutputStream(new FileOutputStream(file));
             objectOutputStream.writeObject(userList);
             objectOutputStream.flush();
             objectOutputStream.close();
