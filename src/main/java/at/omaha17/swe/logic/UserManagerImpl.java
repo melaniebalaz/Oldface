@@ -60,7 +60,7 @@ public class UserManagerImpl implements UserManager {
 
     /**
      * Fetch the current user
-     * @param userName 
+     * @param userName
      * @return a User identified by this token
      */
     public User getUser(String userName){
