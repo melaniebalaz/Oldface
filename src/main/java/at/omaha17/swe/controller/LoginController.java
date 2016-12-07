@@ -56,6 +56,7 @@ public class LoginController extends HttpServlet {
 		try {
             manager.authenticateUser(name,password);
         }catch(AuthenticationFailedException exception){
+			//If the authentication fails redirect to error page
             response.sendRedirect("/loginError");
         }
 
