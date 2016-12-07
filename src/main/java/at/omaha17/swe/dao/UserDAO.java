@@ -8,4 +8,5 @@ public interface UserDAO {
     public void deleteUser(User user) throws UserNotFoundException;
     public User getUserByUsername(String username) throws UserNotFoundException;
     public Vector<User> getUserList();
+    public boolean isUser(String username);
 }
