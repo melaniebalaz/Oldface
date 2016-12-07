@@ -16,7 +16,7 @@
         <artifactId>maven-war-plugin</artifactId>
         <version>3.0.0</version>
         <configuration>
-          <webappDirectory>/src/main/java/at.omaha17.swe/controller</webappDirectory>
+          <webappDirectory>WEB-INF</webappDirectory>
         </configuration>
       </plugin>
     </plugins>
