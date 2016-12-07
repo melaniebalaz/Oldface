@@ -1,3 +1,90 @@
-{% extends "baseExternal.twig" %}
+{% extends "navbaInternal.twig" %}
 
-{% set pagetitle = 'Your Wall' %}
+{% set pagetitle = 'Register' %}
+
+{% block content %}
+
+    <div class="jumbotron">
+
+        <h1>{{ firstname }}</h1>
+        <h1>{{ lastname }}</h1>
+        <div  class="row" style="padding-left: 10px">
+            <div class="col-sm-3">
+                <br>
+                <br>
+                <img src="/WebContent/img/Avatar.jpg" alt="Profilbild"  height=150px width=150px class="img-thumbnail"><br><br>
+
+                <form method="post" action="/editProfile" name="editProfile">
+                    <!-- Not sure what does this and if we are going to need it
+                    <input type="hidden" name="select" value="editProfile">
+                    <input type="hidden" name="curruser" value="${user }">
+                    -->
+                    <input type="submit" class="btn btn-default disabled" value="Profil bearbeiten">
+                </form><br>
+                <br>
+
+
+                <p>Wohnort: </p> <c:out value="${wohnort}"/> <br>
+                <p>E-Mail: </p> <c:out value="${user}"/>  <br>
+                <p>Geburtsdatum: </p> <c:out value="${gebdatum}"/>  <br>
+
+                <br>
+
+                <br>
+
+                <!-- For the friends part we are making a page on its own, so please just add a button for opening this page
+                Freunde: <br>
+                <c:forEach items="${friends}" var="friends" varStatus="f">
+                    <a href="BenutzerServlet"></a> <br>
+                </c:forEach>
+                <br></br>
+                -->
+
+            </div>
+            <div class="jumbotron">
+                <div class="container">
+                    <div class="col-sm-6">
+                        <form method="post" action="BenutzerServlet" name="kurzbeschreibung">
+                            Kurzbeschreibung: <c:out value="${kurzbeschreibung}"/> <br>
+                        </form>
+
+                    </div>
+                    <div class="col-sm-9">
+                        <form method="post" action="BenutzerServlet" name="beitragpost">
+
+                            <input type="hidden" name="select" value="beitragposten">
+                            <input type="hidden" name="curruser" value="${user }">
+
+                            <h3>Wall : </h3>
+                            <input type="text" class="form-control" name="beitrag" placeholder="Was willst du posten?" value="" required/>
+                            <input type="submit" class="btn btn-default" value="Posten" /><br>
+                        </form>
+
+
+                        <c:forEach items="${wall}" var="beitrag" varStatus="status">
+                            ${beitrag }
+                            <c:forEach items="${wall}" var="kommentar" varStatus="status"><br>
+                                ${kommentar}
+                            </c:forEach>
+                            <input type="text" class="form-control" name="kommentar" placeholder="Dein Kommentar dazu" value="" required/>
+                            <input type="submit" class="btn btn-default btn-sm" value="Kommentar absenden" /><br>
+
+
+                            <!--<form action="BenutzerServlet" method="post" name="deletepost">
+                                <input type="hidden" name="select" value="deletepost">
+                                <input type="hidden" name="curruser" value="${user }">
+                                <input type="hidden" name="beitragNr" value="${status.count}">
+                                <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span></button>
+                            </form>-->
+
+                        </c:forEach>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <br><br>
+        </div>
+
+{% endblock %}
