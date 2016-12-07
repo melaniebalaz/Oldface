@@ -14,7 +14,7 @@ import at.omaha17.swe.logic.UserManager;
 /**
  * Servlet implementation class LoginController
  */
-@WebServlet("/login")
+@WebServlet("")
 public class LoginController extends HttpServlet {
 
 	UserManager manager;
