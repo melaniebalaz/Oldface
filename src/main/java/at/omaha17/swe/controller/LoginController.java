@@ -6,7 +6,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import at.omaha17.swe.logic.AuthenticationFailedException;
 import at.omaha17.swe.logic.UserManager;
 
 /**
@@ -34,9 +36,20 @@ public class LoginController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //manager.authenticate();
+		String name = request.getParameter("name");
+		String password = request.getParameter("password");
 
-        response.setHeader("Set-Cookie", "authenticationToken=" );
+		try {
+            manager.authenticateUser(name,password);
+        }catch(AuthenticationFailedException exception){
+            response.sendRedirect("/loginError");
+        }
+
+        HttpSession session=request.getSession();
+        session.setAttribute("userName", name);
+        response.sendRedirect("/wall");
+
+
 	}
 
 	//After login redirect to Wall

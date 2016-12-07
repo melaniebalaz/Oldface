@@ -56,6 +56,7 @@ public class RegisterController extends HttpServlet {
 
         //redirect to the wall page
         HttpSession session=request.getSession();
+        session.setAttribute("userName", name);
         response.sendRedirect("/wall");
 
     }

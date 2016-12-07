@@ -7,7 +7,7 @@ public interface UserManager {
 
     public User registerUser(String role, String username, String password) throws RegistrationFailedException;
     public User authenticateUser(String username, String password) throws AuthenticationFailedException;
-    public User getUser(String authenticationToken);
+    public User getUser(String username);
     public void getDashboard();
 
 //    public void blockSenior();

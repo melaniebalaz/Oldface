@@ -60,10 +60,10 @@ public class UserManagerImpl implements UserManager {
 
     /**
      * Fetch the current user
-     * @param authenticationToken Token by which to identify a user
+     * @param userName 
      * @return a User identified by this token
      */
-    public User getUser(String authenticationToken){
+    public User getUser(String userName){
         return null;
     }
 
