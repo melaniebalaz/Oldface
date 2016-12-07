@@ -1,7 +1,9 @@
 package at.omaha17.swe.controller;
 
 import at.omaha17.swe.logic.UserManager;
+import at.omaha17.swe.logic.UserManagerImpl;
 import at.omaha17.swe.logic.WallManager;
+import at.omaha17.swe.logic.WallManagerImpl;
 import at.omaha17.swe.model.User;
 import org.jtwig.web.servlet.JtwigRenderer;
 
@@ -15,19 +17,21 @@ import java.io.IOException;
 
 @WebServlet("/wall")
 public class WallController extends HttpServlet {
-    WallManager wallManager;
-    UserManager userManager;
+    WallManager wallManager = new WallManagerImpl();
+    UserManager userManager = new UserManagerImpl();
 
     /**
      * The jtwig file renderer
      */
     private final JtwigRenderer renderer = JtwigRenderer.defaultRenderer();
 
+    /*
     public WallController(WallManager manager){
 
         this.wallManager = wallManager;
         this.userManager = userManager;
     }
+    */
 
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
