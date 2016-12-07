@@ -10,6 +10,8 @@ import javax.servlet.http.HttpSession;
 
 import at.omaha17.swe.logic.AuthenticationFailedException;
 import at.omaha17.swe.logic.UserManager;
+import at.omaha17.swe.logic.UserManagerImpl;
+import org.jtwig.web.servlet.JtwigRenderer;
 
 /**
  * Servlet implementation class LoginController
@@ -17,24 +19,36 @@ import at.omaha17.swe.logic.UserManager;
 @WebServlet("")
 public class LoginController extends HttpServlet {
 
-	UserManager manager;
+    /**
+     * The jtwig file renderer
+     */
+    private final JtwigRenderer renderer = JtwigRenderer.defaultRenderer();
+
+	private UserManager manager = new UserManagerImpl();
        
     /**
      * @see HttpServlet#HttpServlet()
      */
+    /** Dependency Injection - next iteration
     public LoginController(UserManager manager) {
         this.manager = manager;
     }
+     **/
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        renderer.dispatcherFor("/WEB-INF/templates/external/login.twig")
+                .render(request,response);
+
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String name = request.getParameter("name");
 		String password = request.getParameter("password");
@@ -42,14 +56,13 @@ public class LoginController extends HttpServlet {
 		try {
             manager.authenticateUser(name,password);
         }catch(AuthenticationFailedException exception){
+			//If the authentication fails redirect to error page
             response.sendRedirect("/loginError");
         }
 
         HttpSession session=request.getSession();
         session.setAttribute("userName", name);
         response.sendRedirect("/wall");
-
-
 	}
 
 	//After login redirect to Wall

@@ -36,7 +36,7 @@ public class RegisterController extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //This just renders the register page, static page
-        renderer.dispatcherFor("/WebContent/templates/external/register.twig")
+        renderer.dispatcherFor("/WEB-INF/templates/external/register.twig")
                 .render(request, response);
     }
 

@@ -40,7 +40,7 @@ public class WallController extends HttpServlet {
         User user = userManager.getUser(userName);
 
 
-        renderer.dispatcherFor("/WebContent/templates/internal/wall.twig")
+        renderer.dispatcherFor("/WEB-INF/templates/internal/wall.twig")
                 .with("name", user.getUsername())
                 .render(request, response);
 
