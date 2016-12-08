@@ -49,19 +49,20 @@ public class RegisterController extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String name = request.getParameter("name");
+        String name = request.getParameter("username");
         String password = request.getParameter("password");
 
         try {
             manager.registerUser("ROLE_SENIOR", name, password);
+
+            //redirect to the wall page
+            HttpSession session=request.getSession();
+            session.setAttribute("userName", name);
+            response.sendRedirect("/wall");
+
         } catch (RegistrationFailedException exception){
             response.sendRedirect("/registerError");
         }
-
-        //redirect to the wall page
-        HttpSession session=request.getSession();
-        session.setAttribute("userName", name);
-        response.sendRedirect("/wall");
 
     }
 

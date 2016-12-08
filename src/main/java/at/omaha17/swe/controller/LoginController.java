@@ -50,19 +50,20 @@ public class LoginController extends HttpServlet {
 	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String name = request.getParameter("name");
+		String name = request.getParameter("username");
 		String password = request.getParameter("password");
 
 		try {
             manager.authenticateUser(name,password);
+
+			HttpSession session=request.getSession();
+			session.setAttribute("userName", name);
+			response.sendRedirect("/wall");
+
         }catch(AuthenticationFailedException exception){
 			//If the authentication fails redirect to error page
             response.sendRedirect("/loginError");
         }
-
-        HttpSession session=request.getSession();
-        session.setAttribute("userName", name);
-        response.sendRedirect("/wall");
 	}
 
 	//After login redirect to Wall

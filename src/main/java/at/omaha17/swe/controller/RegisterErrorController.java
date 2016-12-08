@@ -22,7 +22,7 @@ public class RegisterErrorController extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        renderer.dispatcherFor("/WebContent/templates/error/registerError.twig")
+        renderer.dispatcherFor("/WEB-INF/templates/error/registerError.twig")
                 .render(request,response);
 
     }
