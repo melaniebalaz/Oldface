@@ -7,6 +7,8 @@ import at.omaha17.swe.model.Senior;
 import at.omaha17.swe.model.User;
 import at.omaha17.swe.model.Wall;
 
+import java.io.IOException;
+
 public class UserManagerImpl implements UserManager {
 
     private UserDAO userDAO;
@@ -26,7 +28,7 @@ public class UserManagerImpl implements UserManager {
 
         try { passwordHash = PasswordManager.createHash(password); }
         catch (PasswordManager.CannotPerformOperationException e) {
-            throw new RegistrationFailedException(RegistrationFailedException.ReasonCode.UNKNOWN, e);
+            throw new RegistrationFailedException(e);
         }
 
         if (role.equals(User.ROLE_SENIOR)) {
@@ -37,6 +39,7 @@ public class UserManagerImpl implements UserManager {
         else
             user = new User(role, username, passwordHash);
 
+        user.setLoginDate();
         userDAO.saveUser(user);
         return user;
     }
@@ -51,19 +54,27 @@ public class UserManagerImpl implements UserManager {
 
         } catch (UserNotFoundException e) {
             throw new AuthenticationFailedException(AuthenticationFailedException.ReasonCode.INVALID_USER);
-        } catch (PasswordManager.CannotPerformOperationException|PasswordManager.InvalidHashException e) {
-            throw new AuthenticationFailedException(AuthenticationFailedException.ReasonCode.UNKNOWN, e);
+        } catch (NullPointerException | PasswordManager.CannotPerformOperationException | PasswordManager.InvalidHashException e) {
+            throw new AuthenticationFailedException(e);
         }
 
+        user.setLoginDate();
+        userDAO.saveUser(user);
         return user;
     }
 
     /**
      * Fetch the current user
-     * @param userName
+     * @param username
      * @return a User identified by this token
      */
-    public User getUser(String userName){
+    public User getUser(String username){
+        try {
+            return userDAO.getUserByUsername(username);
+        } catch (UserNotFoundException e) {
+            e.printStackTrace();
+        }
+
         return null;
     }
 
