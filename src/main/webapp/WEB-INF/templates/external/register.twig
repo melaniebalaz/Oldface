@@ -1,17 +1,17 @@
-{% extends "navbarExternal.twig" %}
+{% extends "../layouts/navbarExternal.twig" %}
 
-{% set pagetitle = 'Login' %}
+{% set pagetitle = 'Register' %}
 
 {% block content %}
 
-    <form method="post" action="/login" name="login">
+    <form method="post" action="/register" name="register">
         <div class="jumbotron">
             <div class= "container">
                 <br> <br>
                 <table class="table table-hover">
                     <thead>
                     <tr>
-                        <th colspan="2">Benutzer Login</th>
+                        <th colspan="4">OldFace Registrierung</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -21,10 +21,10 @@
                     </tr>
                     <tr>
                         <td>Passwort</td>
-                        <td><input class="form-control" type="password" name="pass" value="" required/></td>
+                        <td><input class="form-control" type="password" name="password" placeholder="Empfohlen sind mindestens 4 Zeichen" value="" required/></td>
                     </tr>
                     <tr>
-                        <td><input type="submit" value="Login" class="btn btn-default" /></td>
+                        <td><input class="btn btn-default" type="submit" value="Registrieren" /></td>
                     </tr>
                     </tbody>
                 </table>

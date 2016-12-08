@@ -23,7 +23,7 @@ public class LoginErrorController extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        renderer.dispatcherFor("/WebContent/templates/error/loginError.twig")
+        renderer.dispatcherFor("/WEB-INF/templates/error/loginError.twig")
                 .render(request,response);
 
     }
