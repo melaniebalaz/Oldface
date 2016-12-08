@@ -2,7 +2,7 @@ package at.omaha17.swe.logic;
 
 public class AuthenticationFailedException extends Exception {
 
-    public enum ReasonCode { INVALID_USER, INVALID_PASSWORD, UNKNOWN }
+    public enum ReasonCode { INVALID_USER, INVALID_PASSWORD, TECHNICAL_ERROR }
     private ReasonCode reason;
 
     public AuthenticationFailedException(ReasonCode reason) {
@@ -10,12 +10,17 @@ public class AuthenticationFailedException extends Exception {
         this.reason = reason;
     }
 
-    public AuthenticationFailedException(ReasonCode reason, Throwable source) {
-        super(reason.toString(), source);
+    public AuthenticationFailedException(Throwable source) {
+        super(source.getMessage(), source);
+        this.reason = ReasonCode.TECHNICAL_ERROR;
     }
 
     public ReasonCode getReason() {
         return reason;
+    }
+
+    public boolean isTechnical() {
+        return this.reason.equals(ReasonCode.TECHNICAL_ERROR);
     }
 
 }

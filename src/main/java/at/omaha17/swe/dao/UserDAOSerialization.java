@@ -29,8 +29,8 @@ public class UserDAOSerialization implements UserDAO {
             } else
                 userList = new Vector<User>();
 
-            for (User usr : userList)
-                if (usr.getUsername().equals(user.getUsername())) userList.remove(usr);
+            for (User userItem : userList)
+                if (userItem.getUsername().equals(user.getUsername())) { userList.remove(userItem); break; }
 
             userList.add(user);
 
@@ -74,14 +74,13 @@ public class UserDAOSerialization implements UserDAO {
             userList = (Vector<User>) objectInputStream.readObject();
             objectInputStream.close();
 
-            for (User user : userList)
-                if (user.getUsername().equals(username)) return user;
+            for (User userItem : userList)
+                if (userItem.getUsername().equals(username)) return userItem;
 
             throw new UserNotFoundException();
 
-        } catch (IOException|ClassNotFoundException e) { e.printStackTrace(); }
+        } catch (IOException|ClassNotFoundException e) { e.printStackTrace(); return null; }
 
-        return null;
     }
 
     @SuppressWarnings("unchecked")
@@ -109,9 +108,8 @@ public class UserDAOSerialization implements UserDAO {
             userList = (Vector<User>) objectInputStream.readObject();
             objectInputStream.close();
 
-            for (User user : userList)
-                if (user.getUsername().equals(username)) return true;
-
+            for (User userItem : userList)
+                if (userItem.getUsername().equals(username)) return true;
 
         } catch (IOException|ClassNotFoundException e) { e.printStackTrace(); }
 
