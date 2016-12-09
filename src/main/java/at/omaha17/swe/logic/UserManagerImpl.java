@@ -4,18 +4,15 @@ import at.omaha17.swe.dao.UserDAO;
 import at.omaha17.swe.dao.UserDAOSerialization;
 import at.omaha17.swe.model.Senior;
 import at.omaha17.swe.model.User;
-import at.omaha17.swe.model.Wall;
 
 import java.io.IOException;
 
 public class UserManagerImpl implements UserManager {
 
     private UserDAO userDAO;
-    private WallManager wallManager;
 
     public UserManagerImpl(){
         this.userDAO = new UserDAOSerialization("UserDB.ser");
-        this.wallManager = new WallManagerImpl();
     }
 
     public User registerUser(String role, String username, String password) throws UserException {
@@ -25,11 +22,8 @@ public class UserManagerImpl implements UserManager {
             if (userDAO.isUser(username))
                 throw new UserException(UserException.ReasonCode.DUPLICATE_USER);
 
-           if (role.equals(User.ROLE_SENIOR)) {
+           if (role.equals(User.ROLE_SENIOR))
                 user = new Senior(username, password);
-                Wall wall = new Wall(username);
-                wallManager.saveWall(wall);
-            }
             else
                 user = new User(role, username, password);
 

@@ -1,34 +1,42 @@
 package at.omaha17.swe.logic;
 
-import at.omaha17.swe.dao.WallDAO;
-import at.omaha17.swe.dao.WallDAOSerialization;
-import at.omaha17.swe.model.Comment;
-import at.omaha17.swe.model.Post;
-import at.omaha17.swe.model.Wall;
+import at.omaha17.swe.dao.MessageDAO;
+import at.omaha17.swe.dao.MessageDAOSerialization;
+import at.omaha17.swe.model.*;
+
+import java.io.IOException;
+import java.util.Vector;
 
 public class WallManagerImpl implements WallManager {
 
-    private WallDAO wallDAO;
+    private MessageDAO messageDAO;
 
     public WallManagerImpl() {
-        this.wallDAO = new WallDAOSerialization("WallDB.ser");
+        this.messageDAO = new MessageDAOSerialization("MessageDB.ser");
     }
 
-    public void saveWall(Wall wall) {
-        wallDAO.saveWall(wall);
+
+    public Vector<Post> getPosts(Wall wall) throws WallException {
+        try {
+            return messageDAO.getPostsByUsername(wall.getUser().getUsername());
+        } catch (IOException|ClassNotFoundException e) { throw new WallException(e); }
     }
 
-    public Post addPost(String post){
+    public void addPost(Wall wall, Senior author, String content) throws WallException {
+        Message message = new Post(wall.getUser().getUsername(), author.getUsername(), content);
+        try {
+            messageDAO.saveMessage(message);
+        } catch (IOException|ClassNotFoundException e) { throw new WallException(e); }
+    }
+
+    public void addComment(Post post, Senior author, String content) throws WallException {
+        Message message = new Comment(post, author.getUsername(), content);
+        try {
+            messageDAO.saveMessage(message);
+        } catch (IOException|ClassNotFoundException e) { throw new WallException(e); }
+    }
+
+    public Vector<Message> getDashboard(String username) throws WallException {
         return null;
-        //Save the post to the storage
-    }
-
-    public Post getPost(int id){
-        return null;
-    }
-
-    public Comment addComment(String comment){
-        return null;
-        //Save the comment to the storage
     }
 }
