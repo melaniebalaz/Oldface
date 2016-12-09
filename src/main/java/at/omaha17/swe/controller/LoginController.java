@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import at.omaha17.swe.logic.AuthenticationFailedException;
+import at.omaha17.swe.logic.UserException;
 import at.omaha17.swe.logic.UserManager;
 import at.omaha17.swe.logic.UserManagerImpl;
 import org.jtwig.web.servlet.JtwigRenderer;
@@ -60,9 +60,12 @@ public class LoginController extends HttpServlet {
 			session.setAttribute("userName", name);
 			response.sendRedirect("/wall");
 
-        }catch(AuthenticationFailedException exception){
+        }catch(UserException exception){
 			//If the authentication fails redirect to error page
-            response.sendRedirect("/loginError");
+			if (exception.isTechnical())
+				response.sendRedirect("/loginError"); //should be redirected to technical/unknown error
+			else
+				response.sendRedirect("/loginError");
         }
 	}
 

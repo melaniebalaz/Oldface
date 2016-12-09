@@ -1,9 +1,6 @@
 package at.omaha17.swe.controller;
 
-import at.omaha17.swe.logic.UserManager;
-import at.omaha17.swe.logic.UserManagerImpl;
-import at.omaha17.swe.logic.WallManager;
-import at.omaha17.swe.logic.WallManagerImpl;
+import at.omaha17.swe.logic.*;
 import at.omaha17.swe.model.User;
 import org.jtwig.web.servlet.JtwigRenderer;
 
@@ -41,12 +38,16 @@ public class WallController extends HttpServlet {
         HttpSession session=request.getSession();
         String userName = (String) session.getAttribute("userName");
 
-        User user = userManager.getUser(userName);
+        try {
+            User user = userManager.getUser(userName);
 
+            renderer.dispatcherFor("/WEB-INF/templates/internal/wall.twig")
+                    .with("name", user.getUsername())
+                    .render(request, response);
 
-        renderer.dispatcherFor("/WEB-INF/templates/internal/wall.twig")
-                .with("name", user.getUsername())
-                .render(request, response);
+        } catch (UserException e) {
+            //should be redirected to technical/unknown error
+        }
 
 
     }

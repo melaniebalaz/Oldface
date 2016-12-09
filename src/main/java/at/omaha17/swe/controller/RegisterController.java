@@ -1,6 +1,6 @@
 package at.omaha17.swe.controller;
 
-import at.omaha17.swe.logic.RegistrationFailedException;
+import at.omaha17.swe.logic.UserException;
 import at.omaha17.swe.logic.UserManager;
 
 import javax.inject.Inject;
@@ -60,8 +60,11 @@ public class RegisterController extends HttpServlet {
             session.setAttribute("userName", name);
             response.sendRedirect("/wall");
 
-        } catch (RegistrationFailedException exception){
-            response.sendRedirect("/registerError");
+        } catch (UserException exception){
+            if (exception.isTechnical())
+                response.sendRedirect("/registerError"); //should be redirected to technical/unknown error
+            else
+                response.sendRedirect("/registerError");
         }
 
     }

@@ -7,111 +7,87 @@ import java.util.Vector;
 
 public class UserDAOSerialization implements UserDAO {
 
-    private String filename;
+    private File file;
 
     public UserDAOSerialization(String filename) {
-        this.filename = filename;
+        file = new File(filename);
     }
 
     @SuppressWarnings("unchecked")
-    public void saveUser(User user) {
+    public void saveUser(User user) throws IOException, ClassNotFoundException {
         Vector<User> userList;
-        File file;
-        ObjectInputStream objectInputStream;
-        ObjectOutputStream objectOutputStream;
 
-        try {
-            file = new File(filename);
-            if (file.exists()) {
-                objectInputStream = new ObjectInputStream(new FileInputStream(file));
-                userList = (Vector<User>) objectInputStream.readObject();
-                objectInputStream.close();
-            } else
-                userList = new Vector<User>();
-
-            for (User userItem : userList)
-                if (userItem.getUsername().equals(user.getUsername())) { userList.remove(userItem); break; }
-
-            userList.add(user);
-
-            objectOutputStream = new ObjectOutputStream(new FileOutputStream(file));
-            objectOutputStream.writeObject(userList);
-            objectOutputStream.flush();
-            objectOutputStream.close();
-
-        } catch (IOException|ClassNotFoundException e) { e.printStackTrace(); }
-    }
-
-    @SuppressWarnings("unchecked")
-    public void deleteUser(User user) throws UserNotFoundException {
-        Vector<User> userList;
-        ObjectInputStream objectInputStream;
-        ObjectOutputStream objectOutputStream;
-
-        try {
-            objectInputStream = new ObjectInputStream(new FileInputStream(filename));
+        if (file.exists()) {
+            ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(file));
             userList = (Vector<User>) objectInputStream.readObject();
             objectInputStream.close();
+        } else
+            userList = new Vector<User>();
 
-            if (userList.contains(user)) userList.remove(user);
-            else throw new UserNotFoundException();
+        for (User userItem : userList)
+            if (userItem.getUsername().equals(user.getUsername())) { userList.remove(userItem); break; }
 
-            objectOutputStream = new ObjectOutputStream(new FileOutputStream(filename));
-            objectOutputStream.writeObject(userList);
-            objectOutputStream.flush();
-            objectOutputStream.close();
+        userList.add(user);
 
-        } catch (IOException|ClassNotFoundException e) { e.printStackTrace(); }
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(file));
+        objectOutputStream.writeObject(userList);
+        objectOutputStream.flush();
+        objectOutputStream.close();
     }
 
     @SuppressWarnings("unchecked")
-    public User getUserByUsername(String username) throws UserNotFoundException {
-        Vector<User> userList;
-        ObjectInputStream objectInputStream;
+    public void deleteUser(User user) throws IOException, ClassNotFoundException {
 
-        try {
-            objectInputStream = new ObjectInputStream(new FileInputStream(filename));
-            userList = (Vector<User>) objectInputStream.readObject();
-            objectInputStream.close();
+        ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(file));
+        Vector<User> userList = (Vector<User>) objectInputStream.readObject();
+        objectInputStream.close();
 
-            for (User userItem : userList)
-                if (userItem.getUsername().equals(username)) return userItem;
+        if (userList.contains(user)) userList.remove(user);
 
-            throw new UserNotFoundException();
-
-        } catch (IOException|ClassNotFoundException e) { e.printStackTrace(); return null; }
-
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(file));
+        objectOutputStream.writeObject(userList);
+        objectOutputStream.flush();
+        objectOutputStream.close();
     }
 
     @SuppressWarnings("unchecked")
-    public Vector<User> getUserList() {
-        Vector<User> userList;
-        ObjectInputStream objectInputStream;
+    public User getUserByUsername(String username) throws IOException, ClassNotFoundException {
 
-        try {
-            objectInputStream = new ObjectInputStream(new FileInputStream(filename));
-            userList = (Vector<User>) objectInputStream.readObject();
-            objectInputStream.close();
+        if (!file.exists()) return null;
 
-        } catch (IOException|ClassNotFoundException e) { e.printStackTrace(); return null; }
+        ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(file));
+        Vector<User> userList = (Vector<User>) objectInputStream.readObject();
+        objectInputStream.close();
+
+        for (User userItem : userList)
+            if (userItem.getUsername().equals(username)) return userItem;
+
+        return null;
+    }
+
+    @SuppressWarnings("unchecked")
+    public Vector<User> getUserList() throws IOException, ClassNotFoundException {
+
+        if (!file.exists()) return null;
+
+        ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(file));
+        Vector<User> userList = (Vector<User>) objectInputStream.readObject();
+        objectInputStream.close();
 
         return userList;
     }
 
     @SuppressWarnings("unchecked")
-    public boolean isUser(String username) {
-        Vector<User> userList;
-        ObjectInputStream objectInputStream;
+    public boolean isUser(String username) throws IOException, ClassNotFoundException {
 
-        try {
-            objectInputStream = new ObjectInputStream(new FileInputStream(filename));
-            userList = (Vector<User>) objectInputStream.readObject();
-            objectInputStream.close();
+        if (!file.exists()) return false;
 
-            for (User userItem : userList)
-                if (userItem.getUsername().equals(username)) return true;
+        ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(file));
+        Vector<User> userList = (Vector<User>) objectInputStream.readObject();
+        objectInputStream.close();
 
-        } catch (IOException|ClassNotFoundException e) { e.printStackTrace(); }
+        for (User userItem : userList)
+            if (userItem.getUsername().equals(username)) return true;
 
         return false;
     }
