@@ -9,6 +9,7 @@ public class User implements Serializable {
     public final static String ROLE_ADMIN = "Admin";
     public final static String ROLE_RESEARCHER = "Researcher";
 
+    private static final long serialVersionUID = 1L;
 	private String role;
     private String username;
     private String password;

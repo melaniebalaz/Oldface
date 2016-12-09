@@ -1,23 +1,18 @@
 package at.omaha17.swe.model;
 
 import java.io.Serializable;
-import java.util.Vector;
 
 public class Wall implements Serializable {
 
-	private String username; //indirect user relation (due to DAO separation)
-	private Vector<Post> posts;
+	private static final long serialVersionUID = 1L;
+	private Senior user;
 
-	public Wall(String username) {
-	    this.username = username;
+	public Wall(Senior user) {
+	    this.user = user;
     }
 
-    public String getUsername() {
-        return username;
+    public Senior getUser() {
+        return user;
     }
-
-    public Vector<Post> getPosts() {
-	    return posts;
-	}
 
 }
