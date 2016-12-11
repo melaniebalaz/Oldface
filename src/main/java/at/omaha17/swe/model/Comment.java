@@ -6,7 +6,7 @@ public class Comment extends Message {
     private static final long serialVersionUID = 1L;
 	private Post relatedPost;
 
-    public Comment(Post relatedPost, String author, String content){
+    public Comment(Post relatedPost, Senior author, String content){
         super(author, content);
         this.relatedPost = relatedPost;
     }
