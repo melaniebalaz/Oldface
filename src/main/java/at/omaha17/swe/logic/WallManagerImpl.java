@@ -35,7 +35,9 @@ public class WallManagerImpl implements WallManager {
         } catch (IOException|ClassNotFoundException e) { throw new WallException(e); }
     }
 
-    public Vector<Message> getDashboard(String username) throws WallException {
-        return null;
+    public Vector<Post> getDashboard(String username) throws WallException {
+        try {
+        	return messageDAO.getPostList(); // Iteration 1 : All Posts, the relation friendship is not implemented yet
+        } catch (IOException|ClassNotFoundException e) { throw new WallException(e);}
     }
 }

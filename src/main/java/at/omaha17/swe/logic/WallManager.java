@@ -11,7 +11,7 @@ public interface WallManager {
     public Vector<Post> getPosts(Wall wall) throws WallException;
     public void addPost(Wall wall, Senior author, String content) throws WallException;
     public void addComment(Post post, Senior author, String content) throws WallException;
-    public Vector<Message> getDashboard(String username) throws WallException;
+    public Vector<Post> getDashboard(String username) throws WallException;
 
 //  Iteration 2:
 //  public void deleteMessage();
