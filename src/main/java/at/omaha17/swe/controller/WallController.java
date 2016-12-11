@@ -42,6 +42,7 @@ public class WallController extends HttpServlet {
         String userName = (String) session.getAttribute("userName");
 
         try {
+            //This downcast does not work!!
             Senior senior = Senior.class.cast(userManager.getUser(userName));
             Wall wall = senior.getWall();
             try {

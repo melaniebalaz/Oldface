@@ -2,8 +2,9 @@ package at.omaha17.swe.controller;
 
 import at.omaha17.swe.logic.UserException;
 import at.omaha17.swe.logic.UserManager;
+import at.omaha17.swe.logic.UserManagerImpl;
+import org.jtwig.web.servlet.JtwigRenderer;
 
-import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,8 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-import at.omaha17.swe.logic.UserManagerImpl;
-import org.jtwig.web.servlet.JtwigRenderer;
+import static at.omaha17.swe.model.User.ROLE_SENIOR;
 
 /**
  * The Register Controller is responsible for the first time registering of a User.
@@ -53,7 +53,7 @@ public class RegisterController extends HttpServlet {
         String password = request.getParameter("password");
 
         try {
-            manager.registerUser("ROLE_SENIOR", name, password);
+            manager.registerUser(ROLE_SENIOR, name, password);
 
             //redirect to the wall page
             HttpSession session=request.getSession();

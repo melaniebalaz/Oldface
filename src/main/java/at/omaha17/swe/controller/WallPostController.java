@@ -40,7 +40,7 @@ public class WallPostController extends HttpServlet {
                 //add the new post
                 wallManager.addPost(wall, senior,postContent);
                 //redirect to the Wall Controller which loads all the current posts
-                response.sendRedirect("/WallController");
+                response.sendRedirect("/wall");
 
             }catch(WallException exception){
                 //redirect to Error posting Post page
