@@ -8,9 +8,9 @@ public class Post extends Message {
 	private String wall;    //saves username (indirect relation to user due to dao separation)
     private Vector<Comment> comments;
 
-    public Post(String wall, String author, String content){
+    public Post(Wall wall, Senior author, String content){
         super(author, content);
-        this.wall = wall;
+        this.wall = wall.getUser().getUsername();
         comments = new Vector<Comment>();
     }
 

@@ -12,10 +12,10 @@ public abstract class Message implements Serializable {
 	private String content;
 	private String author;  //saves username (indirect relation to user due to dao separation)
 	
-	public Message(String author, String content){
+	public Message(Senior author, String content){
 	    this.messageid = UUID.randomUUID();
         this.creationDate = Calendar.getInstance();
-        this.author = author;
+        this.author = author.getUsername();
 		this.content = content;
 	}
 
