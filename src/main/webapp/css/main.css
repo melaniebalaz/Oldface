@@ -5,3 +5,8 @@
 .navbar {
     border-bottom:lightgrey;
 }
+
+.navbar-inverse .navbar-nav > li > a:focus, .navbar-inverse .navbar-nav > li > a:hover {
+    background-color: transparent;
+    color: black;
+}
