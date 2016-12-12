@@ -1,5 +1,10 @@
 package at.omaha17.swe.controller;
 
+import at.omaha17.swe.logic.UserManager;
+import at.omaha17.swe.logic.UserManagerImpl;
+import at.omaha17.swe.logic.WallManager;
+import at.omaha17.swe.logic.WallManagerImpl;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,9 +15,15 @@ import java.io.IOException;
 @WebServlet("/comment")
 public class WallCommentController extends HttpServlet {
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //String authToken = request.getCookies()["authentication-token"];
+    WallManager wallManager = new WallManagerImpl();
+    UserManager userManager = new UserManagerImpl();
 
-        //add a new Comment to a Post
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String postContent = request.getParameter("comment");
+        String postID = request.getParameter("postID");
+
+        //wallManager.addComment(Post post, Senior author, String postContent);
+
+
     }
 }
