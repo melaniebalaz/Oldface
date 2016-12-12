@@ -1,6 +1,6 @@
 {% extends "../layouts/navbarInternal.twig" %}
 
-{% set pagetitle = 'Register' %}
+{% set pagetitle = 'Wall' %}
 
 {% block content %}
 
@@ -59,11 +59,11 @@
 
                         {% for post in posts %}
                             <div class="panel panel-default">
-                                <div class="panel-heading">{{post.creationDate.format("MM-dd-YYYY")}}</div>
+                                <div class="panel-heading">{{post.creationDate.format("dd-MM-yyyy")}}</div>
                                 <div class="panel-body">
                                     {{post.content}}
                                 </div>
-                                <div class="panel-body">
+                                <div class="panel-footer">
                                     <form method="post" action="/comment" name="comment">
                                         <input type="hidden" name="postID" value={{ post.messageid }}>
                                         <input type="text" class="form-control" name="comment" placeholder="Dein Kommentar dazu" value="" required/>
@@ -71,10 +71,15 @@
                                     </form>
                                     <hr>
                                     Kommentare:
-                                    {{post.getComments}}
-                                    {% for comment in post.comments %}
-                                        {{comment.content}}
-                                    {% endfor%}
+                                    <br>
+                                    <br>
+                                    <ul class="list-group">
+                                        {% for comment in post.comments %}
+                                        <li class="list-group-item">
+                                            {{comment.content}} von <span class="blue-text"> {{comment.author}} </span>
+                                        </li>
+                                        {% endfor%}
+                                    </ul>
                                 </div>
                             </div>
                         {% endfor%}

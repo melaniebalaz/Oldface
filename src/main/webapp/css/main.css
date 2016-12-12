@@ -26,6 +26,6 @@
     background-color:rgba(255, 255, 255, 0.4);;
 }
 
-.table-hover > tbody > tr:hover {
-    background-color: transparent;
+.blue-text {
+    color:#337ab7;
 }
