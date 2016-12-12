@@ -64,11 +64,14 @@
                                     {{post.content}}
                                 </div>
                                 <div class="panel-body">
-                                    <input type="hidden" name="postID" value={{ post.messageid }}>
-                                    <input type="text" class="form-control" name="comment" placeholder="Dein Kommentar dazu" value="" required/>
-                                    <input type="submit" class="btn btn-default btn-sm" value="Kommentar absenden" /><br>
-                                </div>
-                                <div class="panel-body">
+                                    <form method="post" action="/comment" name="comment">
+                                        <input type="hidden" name="postID" value={{ post.messageid }}>
+                                        <input type="text" class="form-control" name="comment" placeholder="Dein Kommentar dazu" value="" required/>
+                                        <input type="submit" class="btn btn-default btn-sm" value="Kommentar absenden" /><br>
+                                    </form>
+                                    <hr>
+                                    Kommentare:
+                                    {{post.getComments}}
                                     {% for comment in post.comments %}
                                         {{comment.content}}
                                     {% endfor%}
