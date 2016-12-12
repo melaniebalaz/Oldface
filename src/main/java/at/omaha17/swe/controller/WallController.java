@@ -48,8 +48,6 @@ public class WallController extends HttpServlet {
             try {
                 Vector<Post> posts = wallManager.getPosts(wall);
 
-                //Typecast each post object to a Message object
-
                 renderer.dispatcherFor("/WEB-INF/templates/internal/wall.twig")
                         .with("name", senior.getUsername())
                         .with("posts", posts)
