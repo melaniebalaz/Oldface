@@ -4,7 +4,7 @@ import java.util.Vector;
 
 public class Post extends Message {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
 	private String wall;    //saves username (indirect relation to user due to dao separation)
     private Vector<Comment> comments;
 
@@ -20,6 +20,10 @@ public class Post extends Message {
 
     public Vector<Comment> getComments() {
         return comments;
+    }
+
+    public void addComment(Comment comment) {
+        comments.add(comment);
     }
 
 }

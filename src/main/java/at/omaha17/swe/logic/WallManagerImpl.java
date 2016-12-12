@@ -34,8 +34,11 @@ public class WallManagerImpl implements WallManager {
 
     public void addComment(String postId, String authorUsername, String content) throws WallException {
         try {
-            Message comment = new Comment(messageDAO.getPostById(postId), (Senior) userDAO.getUserByUsername(authorUsername), content);
+            Comment comment = new Comment(messageDAO.getPostById(postId), (Senior) userDAO.getUserByUsername(authorUsername), content);
+            Post post = comment.getRelatedPost();
+            post.addComment(comment);
             messageDAO.saveMessage(comment);
+            messageDAO.saveMessage(post);
         } catch (IOException|ClassNotFoundException e) { throw new WallException(e); }
     }
 
