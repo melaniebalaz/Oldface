@@ -6,7 +6,7 @@ import java.util.UUID;
 
 public abstract class Message implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
     private UUID messageid;
 	private Calendar creationDate;
 	private String content;
@@ -19,8 +19,8 @@ public abstract class Message implements Serializable {
 		this.content = content;
 	}
 
-    public UUID getMessageid() {
-        return messageid;
+    public String getMessageid() {
+        return messageid.toString();
     }
 
     public Calendar getCreationDate() {

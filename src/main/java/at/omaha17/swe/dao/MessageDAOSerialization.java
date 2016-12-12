@@ -83,4 +83,20 @@ public class MessageDAOSerialization implements MessageDAO {
 
         return postList;
     }
+
+    @SuppressWarnings("unchecked")
+    public Post getPostById(String postId) throws IOException, ClassNotFoundException {
+
+        if (!file.exists()) return null;
+
+        ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(file));
+        Vector<Message> messageList = (Vector<Message>) objectInputStream.readObject();
+        objectInputStream.close();
+
+        for (Message message : messageList)
+            if ((message instanceof Post) && (message.getMessageid().equals(postId)))
+                return (Post) message;
+
+        return null;
+    }
 }
