@@ -1,18 +1,22 @@
 package at.omaha17.swe.model;
 
-import java.io.Serializable;
+import java.util.Vector;
 
-public class Wall implements Serializable {
+public class Wall {
 
-	private static final long serialVersionUID = 1L;
 	private Senior user;
+	private Vector<Post> posts;
 
-	public Wall(Senior user) {
+	public Wall(Senior user, Vector<Post> posts) {
 	    this.user = user;
+	    this.posts = posts;
     }
 
     public Senior getUser() {
         return user;
     }
 
+    public Vector<Post> getPosts() {
+        return posts;
+    }
 }

@@ -1,6 +1,5 @@
 package at.omaha17.swe.controller;
 
-import at.omaha17.swe.logic.WallManager;
 import org.jtwig.web.servlet.JtwigRenderer;
 
 import javax.servlet.ServletException;

@@ -1,8 +1,7 @@
 package at.omaha17.swe.controller;
 
-import at.omaha17.swe.logic.UserException;
-import at.omaha17.swe.logic.UserManager;
-import at.omaha17.swe.logic.UserManagerImpl;
+import at.omaha17.swe.logic.AuthenticationManager;
+import at.omaha17.swe.logic.AuthenticationException;
 import org.jtwig.web.servlet.JtwigRenderer;
 
 import javax.servlet.ServletException;
@@ -20,8 +19,6 @@ import static at.omaha17.swe.model.User.ROLE_SENIOR;
  */
 @WebServlet("/register")
 public class RegisterController extends HttpServlet {
-
-    private UserManager manager = new UserManagerImpl();
 
     /**
      * The jtwig file renderer
@@ -53,14 +50,14 @@ public class RegisterController extends HttpServlet {
         String password = request.getParameter("password");
 
         try {
-            manager.registerUser(ROLE_SENIOR, name, password);
+            AuthenticationManager.registerUser(ROLE_SENIOR, name, password);
 
             //redirect to the wall page
             HttpSession session=request.getSession();
             session.setAttribute("userName", name);
             response.sendRedirect("/wall");
 
-        } catch (UserException exception){
+        } catch (AuthenticationException exception){
             if (exception.isTechnical())
                 response.sendRedirect("/registerError"); //should be redirected to technical/unknown error
             else

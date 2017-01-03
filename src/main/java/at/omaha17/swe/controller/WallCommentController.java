@@ -13,9 +13,6 @@ import java.io.IOException;
 @WebServlet("/comment")
 public class WallCommentController extends HttpServlet {
 
-    WallManager wallManager = new WallManagerImpl();
-    UserManager userManager = new UserManagerImpl();
-
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String comment = request.getParameter("comment");
         String postID = request.getParameter("postID");
@@ -24,10 +21,10 @@ public class WallCommentController extends HttpServlet {
         String userName = (String) session.getAttribute("userName");
 
         try {
-            wallManager.addComment(postID, userName, comment);
+            MessageManager.addComment(postID, userName, comment);
             //Need to make a different redirect if a comment has been added on the dashboard..two controllers?
             response.sendRedirect("/wall");
-        }catch(WallException exception){
+        }catch(TechnicalException exception){
             //redirect to Comment error page
         }
 

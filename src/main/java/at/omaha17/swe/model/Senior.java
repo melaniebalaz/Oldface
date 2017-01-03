@@ -1,21 +1,22 @@
 package at.omaha17.swe.model;
 
 import java.util.Calendar;
+import java.util.Vector;
 
 public class Senior extends User {
 
     public enum SeniorStatus { ACTIVE, BLOCKED }
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 3L;
     private SeniorStatus status;
     private String displayName;
     private Calendar birthDate;
-    private Wall wall;
+    private Vector<Follower> followers;
 
     public Senior(String username, String password) {
     	super(User.ROLE_SENIOR, username, password);
         this.setStatus(SeniorStatus.ACTIVE);
-        wall = new Wall(this);
+        this.followers = new Vector<Follower>();
     }
 
     public SeniorStatus getStatus() {
@@ -42,7 +43,8 @@ public class Senior extends User {
         this.birthDate = birthDate;
     }
 
-    public Wall getWall() {
-        return wall;
+    public void addFollower(Follower follower) {
+        followers.add(follower);
     }
+
 }

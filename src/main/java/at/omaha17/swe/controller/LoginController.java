@@ -8,9 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import at.omaha17.swe.logic.UserException;
-import at.omaha17.swe.logic.UserManager;
-import at.omaha17.swe.logic.UserManagerImpl;
+import at.omaha17.swe.logic.AuthenticationException;
+import at.omaha17.swe.logic.AuthenticationManager;
 import org.jtwig.web.servlet.JtwigRenderer;
 
 /**
@@ -24,8 +23,6 @@ public class LoginController extends HttpServlet {
      */
     private final JtwigRenderer renderer = JtwigRenderer.defaultRenderer();
 
-	private UserManager manager = new UserManagerImpl();
-       
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -54,13 +51,13 @@ public class LoginController extends HttpServlet {
 		String password = request.getParameter("password");
 
 		try {
-            manager.authenticateUser(name,password);
+			AuthenticationManager.loginUser(name, password);
 
 			HttpSession session=request.getSession();
 			session.setAttribute("userName", name);
 			response.sendRedirect("/wall");
 
-        }catch(UserException exception){
+        }catch(AuthenticationException exception){
 			//If the authentication fails redirect to error page
 			if (exception.isTechnical())
 				response.sendRedirect("/loginError"); //should be redirected to technical/unknown error

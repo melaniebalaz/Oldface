@@ -1,8 +1,7 @@
 package at.omaha17.swe.controller;
 
-import at.omaha17.swe.logic.WallException;
-import at.omaha17.swe.logic.WallManager;
-import at.omaha17.swe.logic.WallManagerImpl;
+import at.omaha17.swe.logic.TechnicalException;
+import at.omaha17.swe.logic.VisualizationManager;
 import at.omaha17.swe.model.Post;
 import org.jtwig.web.servlet.JtwigRenderer;
 
@@ -18,8 +17,6 @@ import java.util.Vector;
 @WebServlet("/dashboard")
 public class DashboardController extends HttpServlet {
 
-    WallManager wallManager = new WallManagerImpl();
-
     /**
      * The jtwig file renderer
      */
@@ -29,13 +26,13 @@ public class DashboardController extends HttpServlet {
         HttpSession session=request.getSession();
         String userName = (String) session.getAttribute("userName");
         try {
-            Vector<Post> posts = wallManager.getDashboard(userName);
+            Vector<Post> posts = VisualizationManager.getDashboard(userName);
             renderer.dispatcherFor("/WEB-INF/templates/internal/dashboard.twig")
                     .with("name", userName)
                     .with("posts", posts)
                     .render(request,response);
 
-        }catch(WallException exception){
+        }catch(TechnicalException exception){
             //redirect to Dashboard Error Page
         }
 

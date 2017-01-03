@@ -1,20 +1,20 @@
 package at.omaha17.swe.logic;
 
-public class UserException extends Exception {
+public class AuthenticationException extends Exception {
 
     public enum ReasonCode { DUPLICATE_USER, INVALID_USER, INVALID_PASSWORD }
     private ReasonCode reason;
     private boolean technical_error;
 
     //Business Exception
-    public UserException(ReasonCode reason) {
+    public AuthenticationException(ReasonCode reason) {
         super(reason.toString());
         this.reason = reason;
         this.technical_error = false;
     }
 
     //Technical Exception
-    public UserException(Throwable source) {
+    public AuthenticationException(Throwable source) {
         super(source.getMessage(), source);
         this.technical_error = true;
         this.printStackTrace();

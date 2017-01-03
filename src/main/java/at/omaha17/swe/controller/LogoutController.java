@@ -1,7 +1,5 @@
 package at.omaha17.swe.controller;
 
-import at.omaha17.swe.logic.WallManager;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
