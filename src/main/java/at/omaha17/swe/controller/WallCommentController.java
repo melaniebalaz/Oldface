@@ -1,6 +1,7 @@
 package at.omaha17.swe.controller;
 
 import at.omaha17.swe.logic.*;
+import org.jtwig.web.servlet.JtwigRenderer;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,6 +14,12 @@ import java.io.IOException;
 @WebServlet("/comment")
 public class WallCommentController extends HttpServlet {
 
+
+    /**
+     * The jtwig file renderer
+     */
+    private final JtwigRenderer renderer = JtwigRenderer.defaultRenderer();
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String comment = request.getParameter("comment");
         String postID = request.getParameter("postID");
@@ -22,10 +29,10 @@ public class WallCommentController extends HttpServlet {
 
         try {
             MessageManager.addComment(postID, userName, comment);
-            //Need to make a different redirect if a comment has been added on the dashboard..two controllers?
             response.sendRedirect("/wall");
         }catch(TechnicalException exception){
-            //redirect to Comment error page
+            renderer.dispatcherFor("/WEB-INF/templates/error/error.twig")
+                    .render(request, response);
         }
 
 

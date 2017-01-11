@@ -33,7 +33,8 @@ public class DashboardController extends HttpServlet {
                     .render(request,response);
 
         }catch(TechnicalException exception){
-            //redirect to Dashboard Error Page
+            renderer.dispatcherFor("/WEB-INF/templates/error/error.twig")
+                    .render(request, response);
         }
 
     }

@@ -1,6 +1,7 @@
 package at.omaha17.swe.controller;
 
 import at.omaha17.swe.logic.*;
+import org.jtwig.web.servlet.JtwigRenderer;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,6 +21,11 @@ public class WallPostController extends HttpServlet {
      **/
 
     /**
+     * The jtwig file renderer
+     */
+    private final JtwigRenderer renderer = JtwigRenderer.defaultRenderer();
+
+    /**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -36,9 +42,8 @@ public class WallPostController extends HttpServlet {
             response.sendRedirect("/wall");
 
         }catch(TechnicalException exception){
-            //redirect to Error posting Post page
-            //If the current user cannot be found, redirect to to the logout Page
-            response.sendRedirect("/logout");
+            renderer.dispatcherFor("/WEB-INF/templates/error/error.twig")
+                    .render(request, response);
         }
 
     }

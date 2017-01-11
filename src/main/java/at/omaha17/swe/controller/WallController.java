@@ -46,7 +46,8 @@ public class WallController extends HttpServlet {
         }
 
         catch(TechnicalException exception){
-            //Here we need another Error page
+            renderer.dispatcherFor("/WEB-INF/templates/error/error.twig")
+                    .render(request, response);
         }
 
     }
