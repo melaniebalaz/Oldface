@@ -28,6 +28,12 @@
                     </tr>
                     </tbody>
                 </table>
+
+                {% if error %}
+                    <div class="alert alert-danger" role="alert">
+                        <strong>Fehler!</strong> Dieser Username ist schon vergeben, bitte wähle einen anderen!
+                    </div>
+                {% endif %}
             </div>
         </div>
     </form>

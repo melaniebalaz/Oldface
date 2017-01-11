@@ -59,12 +59,17 @@ public class LoginController extends HttpServlet {
 
         }catch(AuthenticationException exception){
 			//If the authentication fails redirect to error page
-			if (exception.isTechnical())
-				response.sendRedirect("/loginError"); //should be redirected to technical/unknown error
-			else
-				renderer.dispatcherFor("/WEB-INF/templates/external/login.twig")
-			            .with("error", true)
+			if(exception.isTechnical()){
+			    //This later needs to be redirected to the general error twig page
+                renderer.dispatcherFor("/WEB-INF/templates/error/error.twig")
                         .render(request,response);
+            }
+			else{
+                renderer.dispatcherFor("/WEB-INF/templates/external/login.twig")
+                        .with("error", true)
+                        .render(request,response);
+            }
+
         }
 	}
 

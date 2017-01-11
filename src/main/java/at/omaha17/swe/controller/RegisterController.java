@@ -59,9 +59,12 @@ public class RegisterController extends HttpServlet {
 
         } catch (AuthenticationException exception){
             if (exception.isTechnical())
-                response.sendRedirect("/registerError"); //should be redirected to technical/unknown error
+                renderer.dispatcherFor("/WEB-INF/templates/error/error.twig")
+                        .render(request, response);
             else
-                response.sendRedirect("/registerError");
+                renderer.dispatcherFor("/WEB-INF/templates/external/register.twig")
+                        .with("error", true)
+                        .render(request, response);
         }
 
     }
