@@ -3,20 +3,23 @@ package at.omaha17.swe.model;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.UUID;
+import java.util.Vector;
 
 public abstract class Message implements Serializable {
 
-    private static final long serialVersionUID = 2L;
+    private static final long serialVersionUID = 3L;
     private UUID messageid;
 	private Calendar creationDate;
 	private String content;
-	private String author;  //saves username (indirect relation to user due to dao separation)
+	private String author;              //saves username as string (indirect relation to user due to dao separation)
+    private Vector<String> likers;      //saves username as string (indirect relation to user due to dao separation)
 	
 	public Message(Senior author, String content){
 	    this.messageid = UUID.randomUUID();
         this.creationDate = Calendar.getInstance();
         this.author = author.getUsername();
 		this.content = content;
+		this.likers = new Vector<>();
 	}
 
     public String getMessageid() {
@@ -38,5 +41,13 @@ public abstract class Message implements Serializable {
 	public void setContent(String content) {
         this.content = content;
 	}
+
+	public Vector<String> getLikers() {
+	    return likers;
+    }
+
+    public void addLiker(String username) {
+	    likers.add(username);
+    }
 
 }

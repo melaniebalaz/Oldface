@@ -4,10 +4,7 @@ import at.omaha17.swe.dao.MessageDAO;
 import at.omaha17.swe.dao.MessageDAOSerialization;
 import at.omaha17.swe.dao.UserDAO;
 import at.omaha17.swe.dao.UserDAOSerialization;
-import at.omaha17.swe.model.Comment;
-import at.omaha17.swe.model.Message;
-import at.omaha17.swe.model.Post;
-import at.omaha17.swe.model.Senior;
+import at.omaha17.swe.model.*;
 
 import java.io.IOException;
 
@@ -20,24 +17,31 @@ public class MessageManager {
         try {
             Message message = new Post((Senior) userDAO.getUserByUsername(wallUsername), (Senior) userDAO.getUserByUsername(authorUsername), content);
             messageDAO.saveMessage(message);
-        } catch (IOException |ClassNotFoundException e) { throw new TechnicalException(e); }
+        } catch (IOException|ClassNotFoundException|IllegalArgumentException e) { throw new TechnicalException(e); }
     }
 
     public static void addComment(String postId, String authorUsername, String content) throws TechnicalException {
         try {
-            Post post = messageDAO.getPostById(postId);
+            Post post = (Post) messageDAO.getMessageById(postId);
             Comment comment = new Comment(post, (Senior) userDAO.getUserByUsername(authorUsername), content);
             post.addComment(comment);
             messageDAO.saveMessage(comment);
             messageDAO.saveMessage(post);
-        } catch (IOException|ClassNotFoundException e) { throw new TechnicalException(e); }
+        } catch (IOException|ClassNotFoundException|IllegalArgumentException e) { throw new TechnicalException(e); }
     }
 
-    public static void deleteMessage() {
-
+    public static void deleteMessage(String messageId) throws TechnicalException {
+        try {
+            messageDAO.deleteMessage(messageDAO.getMessageById(messageId));
+        } catch (IOException|ClassNotFoundException|IllegalArgumentException e) { throw new TechnicalException(e); }
     }
 
-    public static void likeMessage() {
-
+    public static void likeMessage(String username, String messageId) throws TechnicalException {
+        try {
+            Senior user = (Senior) userDAO.getUserByUsername(username);
+            Message message = messageDAO.getMessageById(messageId);
+            message.addLiker(user.getUsername());
+            messageDAO.saveMessage(message);
+        } catch (IOException|ClassNotFoundException|IllegalArgumentException e) { throw new TechnicalException(e); }
     }
 }

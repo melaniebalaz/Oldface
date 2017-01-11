@@ -52,6 +52,22 @@ public class MessageDAOSerialization implements MessageDAO {
     }
 
     @SuppressWarnings("unchecked")
+    public Message getMessageById(String messageId) throws IOException, ClassNotFoundException, IllegalArgumentException {
+
+        if (!file.exists()) throw new IllegalArgumentException("DB empty -> Message does not exist!");
+
+        ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(file));
+        Vector<Message> messageList = (Vector<Message>) objectInputStream.readObject();
+        objectInputStream.close();
+
+        for (Message message : messageList)
+            if (message.getMessageid().equals(messageId))
+                return message;
+
+        throw new IllegalArgumentException("Message does not exist!");
+    }
+
+    @SuppressWarnings("unchecked")
     public Vector<Post> getPostsByUsername(String username) throws IOException, ClassNotFoundException {
 
         Vector<Post> postList = new Vector<Post>();
@@ -84,19 +100,4 @@ public class MessageDAOSerialization implements MessageDAO {
         return postList;
     }
 
-    @SuppressWarnings("unchecked")
-    public Post getPostById(String postId) throws IOException, ClassNotFoundException {
-
-        if (!file.exists()) return null;
-
-        ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(file));
-        Vector<Message> messageList = (Vector<Message>) objectInputStream.readObject();
-        objectInputStream.close();
-
-        for (Message message : messageList)
-            if ((message instanceof Post) && (message.getMessageid().equals(postId)))
-                return (Post) message;
-
-        return null;
-    }
 }

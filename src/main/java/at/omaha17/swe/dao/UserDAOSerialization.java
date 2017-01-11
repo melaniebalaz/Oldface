@@ -51,9 +51,9 @@ public class UserDAOSerialization implements UserDAO {
     }
 
     @SuppressWarnings("unchecked")
-    public User getUserByUsername(String username) throws IOException, ClassNotFoundException {
+    public User getUserByUsername(String username) throws IOException, ClassNotFoundException, IllegalArgumentException {
 
-        if (!file.exists()) return null;
+        if (!file.exists()) throw new IllegalArgumentException("DB empty -> User does not exist!");
 
         ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(file));
         Vector<User> userList = (Vector<User>) objectInputStream.readObject();
@@ -62,7 +62,7 @@ public class UserDAOSerialization implements UserDAO {
         for (User userItem : userList)
             if (userItem.getUsername().equals(username)) return userItem;
 
-        return null;
+        throw new IllegalArgumentException("User does not exist!");
     }
 
     @SuppressWarnings("unchecked")

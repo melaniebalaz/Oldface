@@ -27,16 +27,17 @@ public class AuthenticationManager {
             userDAO.saveUser(user);
             return user;
 
-        } catch (IOException |ClassNotFoundException e) { throw new AuthenticationException(e); }
+        } catch (IOException|ClassNotFoundException e) { throw new AuthenticationException(e); }
     }
 
     public static User loginUser(String username, String password) throws AuthenticationException {
 
         try {
+            if (!userDAO.isUser(username))
+                throw new AuthenticationException(AuthenticationException.ReasonCode.INVALID_USER);
+
             User user = userDAO.getUserByUsername(username);
 
-            if (user == null)
-                throw new AuthenticationException(AuthenticationException.ReasonCode.INVALID_USER);
             if (!user.getPassword().equals(password))
                 throw new AuthenticationException(AuthenticationException.ReasonCode.INVALID_PASSWORD);
 
