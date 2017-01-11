@@ -46,8 +46,8 @@ public abstract class Message implements Serializable {
 	    return likers;
     }
 
-    public void addLiker(String username) {
-	    likers.add(username);
+    public void addLiker(Senior liker) {
+	    likers.add(liker.getUsername());
     }
 
 }

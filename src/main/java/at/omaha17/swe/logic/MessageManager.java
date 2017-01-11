@@ -14,34 +14,41 @@ public class MessageManager {
     private static final MessageDAO messageDAO = new MessageDAOSerialization("MessageDB.ser");
 
     public static void addPost(String wallUsername, String authorUsername, String content) throws TechnicalException {
+
         try {
             Message message = new Post((Senior) userDAO.getUserByUsername(wallUsername), (Senior) userDAO.getUserByUsername(authorUsername), content);
             messageDAO.saveMessage(message);
+
         } catch (IOException|ClassNotFoundException|IllegalArgumentException e) { throw new TechnicalException(e); }
     }
 
     public static void addComment(String postId, String authorUsername, String content) throws TechnicalException {
+
         try {
             Post post = (Post) messageDAO.getMessageById(postId);
             Comment comment = new Comment(post, (Senior) userDAO.getUserByUsername(authorUsername), content);
             post.addComment(comment);
             messageDAO.saveMessage(comment);
             messageDAO.saveMessage(post);
+
         } catch (IOException|ClassNotFoundException|IllegalArgumentException e) { throw new TechnicalException(e); }
     }
 
     public static void deleteMessage(String messageId) throws TechnicalException {
+
         try {
             messageDAO.deleteMessage(messageDAO.getMessageById(messageId));
+
         } catch (IOException|ClassNotFoundException|IllegalArgumentException e) { throw new TechnicalException(e); }
     }
 
-    public static void likeMessage(String username, String messageId) throws TechnicalException {
+    public static void likeMessage(String messageId, String username) throws TechnicalException {
+
         try {
-            Senior user = (Senior) userDAO.getUserByUsername(username);
             Message message = messageDAO.getMessageById(messageId);
-            message.addLiker(user.getUsername());
+            message.addLiker((Senior) userDAO.getUserByUsername(username));
             messageDAO.saveMessage(message);
+
         } catch (IOException|ClassNotFoundException|IllegalArgumentException e) { throw new TechnicalException(e); }
     }
 }
