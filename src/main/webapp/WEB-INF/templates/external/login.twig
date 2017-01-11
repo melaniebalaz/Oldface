@@ -28,6 +28,13 @@
                     </tr>
                     </tbody>
                 </table>
+
+                {% if error %}
+                    <div class="alert alert-danger" role="alert">
+                        <strong>Fehler!</strong> Dein Passwort oder ein Username stimmt nicht!
+                    </div>
+                {% endif %}
+
             </div>
         </div>
     </form>

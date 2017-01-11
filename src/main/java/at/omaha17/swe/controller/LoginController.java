@@ -1,16 +1,16 @@
 package at.omaha17.swe.controller;
 
-import java.io.IOException;
+import at.omaha17.swe.logic.AuthenticationException;
+import at.omaha17.swe.logic.AuthenticationManager;
+import org.jtwig.web.servlet.JtwigRenderer;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import at.omaha17.swe.logic.AuthenticationException;
-import at.omaha17.swe.logic.AuthenticationManager;
-import org.jtwig.web.servlet.JtwigRenderer;
+import java.io.IOException;
 
 /**
  * Servlet implementation class LoginController
@@ -62,7 +62,9 @@ public class LoginController extends HttpServlet {
 			if (exception.isTechnical())
 				response.sendRedirect("/loginError"); //should be redirected to technical/unknown error
 			else
-				response.sendRedirect("/loginError");
+				renderer.dispatcherFor("/WEB-INF/templates/external/login.twig")
+			            .with("error", true)
+                        .render(request,response);
         }
 	}
 
