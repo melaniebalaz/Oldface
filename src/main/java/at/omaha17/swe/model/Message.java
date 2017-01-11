@@ -24,7 +24,7 @@ public abstract class Message implements Serializable {
     }
 
     public Calendar getCreationDate() {
-		return creationDate;
+       return creationDate;
 	}
 
     public String getAuthor() {

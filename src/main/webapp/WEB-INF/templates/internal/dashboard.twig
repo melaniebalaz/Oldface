@@ -15,7 +15,7 @@
             {% for post in posts %}
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h4> <span class="blue-text "> {{post.author}}  </span> | {{post.creationDate.format("MM-dd-YYYY")}} </h4>
+                        <h4> <span class="blue-text "> {{post.author}} </span> | {{post.creationDate.getTime()|date("dd-MM-yyyy")}} </h4>
                     </div>
                     <div class="panel-body">
                         {{post.content}}
