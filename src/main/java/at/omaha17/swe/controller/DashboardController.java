@@ -2,7 +2,7 @@ package at.omaha17.swe.controller;
 
 import at.omaha17.swe.logic.TechnicalException;
 import at.omaha17.swe.logic.VisualizationManager;
-import at.omaha17.swe.model.Post;
+import at.omaha17.swe.model.Dashboard;
 import org.jtwig.web.servlet.JtwigRenderer;
 
 import javax.servlet.ServletException;
@@ -26,10 +26,10 @@ public class DashboardController extends HttpServlet {
         HttpSession session=request.getSession();
         String userName = (String) session.getAttribute("userName");
         try {
-            Vector<Post> posts = VisualizationManager.getDashboard(userName);
+            Dashboard dashboard = VisualizationManager.getDashboard(userName);
             renderer.dispatcherFor("/WEB-INF/templates/internal/dashboard.twig")
-                    .with("name", userName)
-                    .with("posts", posts)
+                    .with("name", dashboard.getUser().getUsername())
+                    .with("posts", dashboard.getPosts())
                     .render(request,response);
 
         }catch(TechnicalException exception){

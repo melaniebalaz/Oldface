@@ -4,19 +4,31 @@ import java.util.Vector;
 
 public class Dashboard {
 
-    private Senior user;
-    private Vector<Message> messages;
+    private User user;
+    private Vector<Post> posts;
 
-    public Dashboard(Senior user, Vector<Message> messages) {
+    public Dashboard(User user, Vector<Post> posts) {
         this.user = user;
-        this.messages = messages;
+        this.posts = posts;
     }
 
-    public Senior getUser() {
+    public Dashboard(User user) {
+        this(user, new Vector<>());
+    }
+
+    public User getUser() {
         return user;
     }
 
-    public Vector<Message> getMessages() {
-        return messages;
+    public void addPost(Post post) {
+        posts.add(post);
+    }
+
+    public void setPosts(Vector<Post> posts) {
+        this.posts = posts;
+    }
+
+    public Vector<Post> getPosts() {
+        return posts;
     }
 }

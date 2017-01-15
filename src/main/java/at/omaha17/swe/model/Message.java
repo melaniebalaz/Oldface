@@ -5,7 +5,7 @@ import java.util.Calendar;
 import java.util.UUID;
 import java.util.Vector;
 
-public abstract class Message implements Serializable {
+public abstract class Message implements Serializable, Comparable<Message> {
 
     private static final long serialVersionUID = 3L;
     private UUID messageid;
@@ -50,4 +50,8 @@ public abstract class Message implements Serializable {
 	    likers.add(liker.getUsername());
     }
 
+    @Override
+    public int compareTo(Message o) {
+        return getCreationDate().compareTo(o.getCreationDate());
+    }
 }
