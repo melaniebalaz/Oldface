@@ -41,6 +41,7 @@ public class WallController extends HttpServlet {
 
             renderer.dispatcherFor("/WEB-INF/templates/internal/wall.twig")
                     .with("name", wall.getUser().getUsername())
+                    .with("abstract", wall.getUser().getAbstract())
                     .with("posts", wall.getPosts())
                     .render(request, response);
         }
