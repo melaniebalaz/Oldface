@@ -21,11 +21,19 @@ public class ProfileManager {
         } catch (IOException|ClassNotFoundException|IllegalArgumentException e) { throw new TechnicalException(e); }
     }
 
-    public static void updateProfile(Senior user) {
+    public static void updateProfile(String username, String profileName, String profileAbstract) throws TechnicalException {
 
+        try {
+            Senior user = (Senior) userDAO.getUserByUsername(username);
+            user.setDisplayName(profileName);
+            user.setAbstract(profileAbstract);
+            userDAO.saveUser(user);
+
+        } catch (IOException|ClassNotFoundException|IllegalArgumentException e) { throw new TechnicalException(e); }
     }
 
-    public static Senior findProfile(String username) {
+    public static Senior findProfile(String searchkey) {
+        //not yet implemented - need info from UI
         return null;
     }
 
@@ -40,7 +48,7 @@ public class ProfileManager {
         } catch (IOException|ClassNotFoundException|IllegalArgumentException e) { throw new TechnicalException(e); }
     }
 
-    public static Vector<Senior> getFollower(String username) throws TechnicalException {
+    public static Vector<Senior> getProfileFollower(String username) throws TechnicalException {
 
         try {
             return ((Senior) userDAO.getUserByUsername(username)).getFollowers();
