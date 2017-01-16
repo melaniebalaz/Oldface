@@ -4,47 +4,47 @@
 
 {% block content %}
 
-<div class="container-fluid jumbotron">
-	<div class="container text-center">
-		<h2>
-			{{ name }} - Dashboard
-		</h2>
+    <div class="container-fluid jumbotron">
+        <div class="container text-center">
+            <h2>
+                {{ name }} - Dashboard
+            </h2>
 
-        <hr>
-        <div class="container">
-            {% for post in posts %}
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4> <span class="blue-text "> {{post.author}} </span> | {{post.creationDate.getTime()|date("dd-MM-yyyy")}} </h4>
+            <hr>
+            <div class="container">
+                {% for post in posts %}
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4> <span class="blue-text "> {{post.author}} </span> | {{post.creationDate.getTime()|date("dd-MM-yyyy")}} </h4>
+                        </div>
+                        <div class="panel-body">
+                            {{post.content}}
+                        </div>
+                        <div class="panel-footer">
+                            <hr>
+                            Kommentare:
+                            <br>
+                            <br>
+                            <ul class="list-group" style="background-color:lightgrey;">
+                                {% for comment in post.comments %}
+                                    <li class="list-group-item">
+                                        {{comment.content}} von <span class="blue-text"> {{comment.author}} </span>
+                                    </li>
+                                {% endfor%}
+                            </ul>
+                        </div>
                     </div>
-                    <div class="panel-body">
-                        {{post.content}}
-                    </div>
-                    <div class="panel-footer">
-                        <hr>
-                        Kommentare:
-                        <br>
-                        <br>
-                        <ul class="list-group">
-                            {% for comment in post.comments %}
-                                <li class="list-group-item">
-                                    {{comment.content}} von <span class="blue-text"> {{comment.author}} </span>
-                                </li>
-                            {% endfor%}
-                        </ul>
-                    </div>
-                </div>
-            {% endfor%}
+                {% endfor%}
+
+            </div>
 
         </div>
 
-		</div>
+
+        <br><br>
+
+    </div>
 
 
-		<br><br>
-
-	</div>
-	
-		
-</div>
+    </div>
 {% endblock %}

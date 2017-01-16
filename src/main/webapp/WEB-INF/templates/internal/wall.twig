@@ -9,7 +9,7 @@
         <div class="container" >
             <br>
             <br>
-                <h3>{{ name }} - Dein Profil </h3>
+                <h3>{{ name }} - Profil </h3>
             <br>
             <div class="col-sm-3">
                 <img src="/img/Avatar.jpg" alt="Profilbild" height=150px width=150px class="img-thumbnail"><br><br>
@@ -20,11 +20,18 @@
                 </form>
                 <br>
 
-
+                {% if NotMyWall %}
+                    <form method="post" action="/followUser" name="follow">
+                        <input type="submit" class="btn btn-primary" value="User folgen">
+                    </form>
+                {%  endif %}
 
                 <form method="post" action="/showFriends" name="showFriends">
                     <input type="submit" class="btn btn-default disabled" value="Freunde anzeigen">
                 </form><br>
+
+
+
             </div>
             <div class="container">
                     <div class="col-sm-6">
@@ -74,7 +81,7 @@
                                     Kommentare:
                                     <br>
                                     <br>
-                                    <ul class="list-group">
+                                    <ul class="list-group" style="background-color:lightgrey;">
                                         {% for comment in post.comments %}
                                         <li class="list-group-item">
                                             {{comment.content}} von <span class="blue-text"> {{comment.author}} </span>
