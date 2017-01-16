@@ -7,10 +7,10 @@ public class Senior extends User {
 
     public enum SeniorStatus { ACTIVE, BLOCKED }
 
-    private static final long serialVersionUID = 4L;
+    private static final long serialVersionUID = 5L;
     private SeniorStatus status;
     private String displayName;
-    private Calendar birthDate;
+    private String displayAbstract;
     private Vector<Senior> followers;
 
     public Senior(String username, String password) {
@@ -35,12 +35,12 @@ public class Senior extends User {
         this.displayName = displayName;
     }
 
-    public Calendar getBirthDate() {
-        return birthDate;
+    public String getAbstract() {
+        return displayAbstract;
     }
 
-    public void setBirthDate(Calendar birthDate) {
-        this.birthDate = birthDate;
+    public void setAbstract(String displayAbstract) {
+        this.displayAbstract = displayAbstract;
     }
 
     public void addFollower(Senior follower) {
