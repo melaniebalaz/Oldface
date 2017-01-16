@@ -21,11 +21,6 @@
                 <br>
 
 
-                <!-- We dont need this in the first iteration
-                <p>Wohnort: </p> <c:out value="${wohnort}"/> <br>
-                <p>E-Mail: </p> <c:out value="${user}"/>  <br>
-                <p>Geburtsdatum: </p> <c:out value="${gebdatum}"/>  <br>
-                -->
 
                 <form method="post" action="/showFriends" name="showFriends">
                     <input type="submit" class="btn btn-default disabled" value="Freunde anzeigen">
@@ -35,7 +30,13 @@
                     <div class="col-sm-6">
                         <form method="post" action="BenutzerServlet" name="kurzbeschreibung">
                             <p>
-                                Platzhalter Kurzbeschreibung
+                            <h3>Kurzbeschreibung:</h3>
+                                {% if editProfilon %}
+                                    <form method="editProfil" action="/editProfil" name="profiledit">
+                                        <input type="text" class="form-control" name="writebriefdescription" placeholder="Schreib hier etwas ueber dich.." value="" required/>
+                                        <input type="submit" class="btn btn-default" value="editProfil" /><br>
+                                    </form>
+                                {%  endif %}
                             </p>
                         </form>
 

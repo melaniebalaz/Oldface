@@ -24,8 +24,23 @@
                         <td><input class="form-control" type="password" name="password" value="" required/></td>
                     </tr>
                     <tr>
-                        <td><input type="submit" value="Login" class="btn btn-default" /></td>
+                    <td><div class="btn-group">
+                            <input type="submit" value="Login" class="btn btn-default"/>
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                <span class="caret"></span>
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="/AdminWall">Login as Admin</a></li>
+                                <li><a href="/ResearcherWall">Login as Researcher</a></li>
+
+
+                            </ul>
+                        </div></td>
                     </tr>
+
+
+
                     </tbody>
                 </table>
 
