@@ -39,14 +39,17 @@
                             <p>
                             <h3>Kurzbeschreibung:</h3>
                                 {% if editProfilon %}
-                                    <form method="editProfil" action="/editProfil" name="profiledit">
-                                        <input type="text" class="form-control" name="writebriefdescription" placeholder="Schreib hier etwas ueber dich.." value="" required/>
+
+                                        <input type="text" class="form-control" name="briefdescription" placeholder="Schreib hier etwas ueber dich.." value="" required/>
                                         <input type="submit" class="btn btn-default" value="editProfil" /><br>
-                                    </form>
+
                                 {%  endif %}
                             </p>
                         </form>
 
+                    </div>
+                    <div class="col-sm-6">
+                    {{ abstract }}
                     </div>
                     <div class="col-sm-6">
                         <form method="post" action="/post" name="beitragpost">
