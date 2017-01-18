@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.Vector;
 
 @WebServlet("/dashboard")
 public class DashboardController extends HttpServlet {
@@ -24,13 +23,36 @@ public class DashboardController extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session=request.getSession();
+
+
+        //If the user it not logged in, redirect to error page
+        if(session.getAttribute("userName") == null){
+            renderer.dispatcherFor("/WEB-INF/templates/error/error.twig")
+                    .render(request, response);
+        }
+
         String userName = (String) session.getAttribute("userName");
+
         try {
             Dashboard dashboard = VisualizationManager.getDashboard(userName);
-            renderer.dispatcherFor("/WEB-INF/templates/internal/dashboard.twig")
-                    .with("name", dashboard.getUser().getUsername())
-                    .with("posts", dashboard.getPosts())
-                    .render(request,response);
+
+            //TODO
+            String role = dashboard.getUser().getRole();
+
+            if (role.equals("Senior")){
+                renderer.dispatcherFor("/WEB-INF/templates/internal/dashboard.twig")
+                        .with("name", dashboard.getUser().getUsername())
+                        .with("posts", dashboard.getPosts())
+                        .render(request,response);
+            }
+            else if (role.equals("Admin")){
+                renderer.dispatcherFor("/WEB-INF/templates/internal/admin_wall.twig")
+                        .with("name", dashboard.getUser().getUsername())
+                        .with("posts", dashboard.getPosts())
+                        .render(request,response);
+            }
+
+
 
         }catch(TechnicalException exception){
             renderer.dispatcherFor("/WEB-INF/templates/error/error.twig")

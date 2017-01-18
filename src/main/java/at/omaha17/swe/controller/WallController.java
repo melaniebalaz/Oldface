@@ -28,12 +28,47 @@ public class WallController extends HttpServlet {
     }
     */
 
+
+    /**
+     * Post Request for posting the new short abstract that should be portrayed on the Users Wall
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+
+        HttpSession session=request.getSession();
+
+        //If the user it not logged in, redirect to error page
+        if(session.getAttribute("userName") == null){
+            renderer.dispatcherFor("/WEB-INF/templates/error/error.twig")
+                    .render(request, response);
+        }
+
+        String userName = (String) session.getAttribute("userName");
+
+        String newAbstract = request.getParameter("abstract");
+        String newDisplayName = request.getParameter("displayName");
+
+    }
+
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        //TODO
+        //Check if a session already exists, if not throw an error (You are not logged in!)
         HttpSession session=request.getSession();
+
+        //If the user it not logged in, redirect to error page
+        if(session.getAttribute("userName") == null){
+            renderer.dispatcherFor("/WEB-INF/templates/error/error.twig")
+                    .render(request, response);
+        }
+
         String userName = (String) session.getAttribute("userName");
 
         try {
