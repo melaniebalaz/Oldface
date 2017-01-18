@@ -24,6 +24,7 @@
                             {{post.content}}
 
                             <form method="post" action="/deletePost" name="delPost">
+                                <input type="hidden" name="postIDdelete" value={{ post.messageid }}>
                                 <input type="submit" class="btn btn-default" value="Post löschen">
                             </form>
 
@@ -39,6 +40,7 @@
                                         {{comment.content}} von <span class="blue-text"> {{comment.author}} </span>
 
                                         <form method="post" action="/deleteComment" name="delComment">
+                                            <input type="hidden" name="commentIDdelete " value={{ comment.messageid }}>
                                             <input type="submit" class="btn btn-default" value="Kommentar löschen">
                                         </form>
 
