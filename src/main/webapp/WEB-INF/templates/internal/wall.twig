@@ -35,18 +35,19 @@
             </div>
             <div class="container">
                     <div class="col-sm-6">
-                        <form method="post" action="BenutzerServlet" name="kurzbeschreibung">
+                        {% if editProfilon %}
+                        <form method="post" action="/wall" name="kurzbeschreibung">
                             <p>
+                            <h3>Name:</h3>
+                                        <input type="text" class="form-control" name="briefdescription" placeholder="Name" value="" required/>
                             <h3>Kurzbeschreibung:</h3>
-                                {% if editProfilon %}
-
                                         <input type="text" class="form-control" name="briefdescription" placeholder="Schreib hier etwas ueber dich.." value="" required/>
                                         <input type="submit" class="btn btn-default" value="editProfil" /><br>
 
-                                {%  endif %}
+
                             </p>
                         </form>
-
+                        {%  endif %}
                     </div>
                     <div class="col-sm-6">
                     {{ abstract }}
