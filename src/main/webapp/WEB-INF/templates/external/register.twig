@@ -24,18 +24,20 @@
                         <td><input class="form-control" type="password" name="password" placeholder="Empfohlen sind mindestens 4 Zeichen" value="" required/></td>
                     </tr>
                     <tr>
+                        <td> Role </td>
+                        <td>
+                            <select name="role">
+                                <option value="Senior" role="Senior">Senior</option>
+                                <option value="Admin" role="Admin">Admin</option>
+                                <option value="Researcher" role="Researcher">Researcher</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
                         <td>
                         <div class="btn-group">
                             <input type="submit" value="Registrieren" class="btn btn-default"/>
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                <span class="caret"></span>
-                                <span class="sr-only">Toggle Dropdown</span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="/wall">Register as Admin</a></li>
-                                <li><a href="/wall">Register as Researcher</a></li>
-                            </ul>
-                        </div></td>
+                        </div>
                     </tr>
                     </tbody>
                 </table>

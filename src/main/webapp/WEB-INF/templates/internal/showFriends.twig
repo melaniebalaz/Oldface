@@ -1,0 +1,39 @@
+{% extends "../layouts/navbarInternal.twig" %}
+
+{% set pagetitle = 'Friends' %}
+
+{% block content %}
+
+<div class="container-fluid jumbotron">
+	<div class="container text-center">
+		<h2>
+			{{ name }} - Friends
+		</h2>
+
+        <hr>
+        <div class="container">
+            {% for friend in friends %}
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4> <span class="blue-text "> {{friend.name}} </span></h4>
+                    </div>
+                    <!--<div class="panel-body">
+                        <form method="post" action="/removeFriend" name="removeFriend">
+                            <input type="submit" class="btn btn-default disabled" value="Freund löschen">
+                        </form>
+                    </div>-->
+                </div>
+            {% endfor%}
+
+        </div>
+
+		</div>
+
+
+		<br><br>
+
+	</div>
+	
+		
+</div>
+{% endblock %}

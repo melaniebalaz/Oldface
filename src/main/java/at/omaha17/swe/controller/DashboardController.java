@@ -34,6 +34,8 @@ public class DashboardController extends HttpServlet {
         String userName = (String) session.getAttribute("userName");
 
         try {
+
+            //Dynamically loads the correct Dashboarda according the role
             Dashboard dashboard = VisualizationManager.getDashboard(userName);
 
             //TODO
