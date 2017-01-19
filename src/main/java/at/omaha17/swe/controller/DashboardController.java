@@ -38,7 +38,6 @@ public class DashboardController extends HttpServlet {
             //Dynamically loads the correct Dashboarda according the role
             Dashboard dashboard = VisualizationManager.getDashboard(userName);
 
-            //TODO
             String role = dashboard.getUser().getRole();
 
             if (role.equals("Senior")){
@@ -51,6 +50,12 @@ public class DashboardController extends HttpServlet {
                 renderer.dispatcherFor("/WEB-INF/templates/internal/admin_wall.twig")
                         .with("name", dashboard.getUser().getUsername())
                         .with("posts", dashboard.getPosts())
+                        .render(request,response);
+            }
+
+            else if (role.equals("Researcher")){
+                renderer.dispatcherFor("/WEB-INF/templates/internal/researcher_wall.twig")
+                        .with("name", dashboard.getUser().getUsername())
                         .render(request,response);
             }
 

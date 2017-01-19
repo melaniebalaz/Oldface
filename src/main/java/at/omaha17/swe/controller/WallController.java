@@ -63,6 +63,7 @@ public class WallController extends HttpServlet {
         //Check if a session already exists, if not throw an error (You are not logged in!)
         HttpSession session=request.getSession();
 
+
         //If the user it not logged in, redirect to error page
         if(session.getAttribute("userName") == null){
             renderer.dispatcherFor("/WEB-INF/templates/error/error.twig")

@@ -2,6 +2,7 @@ package at.omaha17.swe.controller;
 
 import at.omaha17.swe.logic.AuthenticationException;
 import at.omaha17.swe.logic.AuthenticationManager;
+import at.omaha17.swe.model.User;
 import org.jtwig.web.servlet.JtwigRenderer;
 
 import javax.servlet.ServletException;
@@ -51,11 +52,24 @@ public class LoginController extends HttpServlet {
 		String password = request.getParameter("password");
 
 		try {
-			AuthenticationManager.loginUser(name, password);
+			User user = AuthenticationManager.loginUser(name, password);
 
 			HttpSession session=request.getSession();
 			session.setAttribute("userName", name);
-			response.sendRedirect("/wall");
+
+			String role = user.getRole();
+
+
+			//If the user is a Senior, show their wall, otherwise redirect to the dashboard for Admin and Researcher
+			if (role.equals("Senior")){
+				response.sendRedirect("/wall");
+			}
+			else {
+				response.sendRedirect("/dashboard");
+			}
+
+
+
 
         }catch(AuthenticationException exception){
 			//If the authentication fails redirect to error page
