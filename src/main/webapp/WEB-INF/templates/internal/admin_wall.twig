@@ -16,14 +16,14 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4> <span class="blue-text "> {{post.author}} </span> | {{post.creationDate.getTime()|date("dd-MM-yyyy")}} </h4>
-                            <form method="post" action="/blockUser" name="block">
+                            <form method="get" action="/admin" name="block">
                                 <input type="submit" class="btn btn-default" value="User blocken">
                             </form>
                         </div>
                         <div class="panel-body">
                             {{post.content}}
 
-                            <form method="post" action="/deletePost" name="delPost">
+                            <form method="post" action="/admin" name="delPost">
                                 <input type="hidden" name="postIDdelete" value={{ post.messageid }}>
                                 <input type="submit" class="btn btn-default" value="Post löschen">
                             </form>
