@@ -9,16 +9,46 @@
         <div class="container" >
             <br>
             <br>
-                <h3>{{ name }} - Profil </h3>
+                <h3>{{ displayName }} </h3>
+                <h5>{{ name }} - Username</h5>
             <br>
             <div class="col-sm-3">
                 <img src="/img/Avatar.jpg" alt="Profilbild" height=150px width=150px class="img-thumbnail"><br><br>
 
-                <form method="post" action="/editProfile" name="editProfile">
 
-                    <input type="submit" class="btn btn-default disabled" value="Profil bearbeiten">
+                {% if editProfile %}
+                <form method="post" action="/editProfile" name="editProfile">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">edit Profil</button>
+
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="exampleModalLabel">Profil bearbeiten</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="control-label">Profilname:</label>
+                                        <input type="text" class="form-control" name="profilname" placeholder="Name" value="" required/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="message-text" class="control-label">Kurzbeschreibung:</label>
+                                        <input type="text" class="form-control" name="briefdescription" placeholder="Schreib hier etwas ueber dich.." value="" required/>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <input type="submit" class="btn btn-default disabled" value="Profil bearbeiten">
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <br>
                 </form>
-                <br>
+                {%  endif %}
 
                 {% if NotMyWall %}
                     <form method="post" action="/followUser" name="follow">
@@ -39,7 +69,7 @@
                         <form method="post" action="/wall" name="kurzbeschreibung">
                             <p>
                             <h3>Name:</h3>
-                                        <input type="text" class="form-control" name="briefdescription" placeholder="Name" value="" required/>
+                                        <input type="text" class="form-control" name="profilname" placeholder="Name" value="" required/>
                             <h3>Kurzbeschreibung:</h3>
                                         <input type="text" class="form-control" name="briefdescription" placeholder="Schreib hier etwas ueber dich.." value="" required/>
                                         <input type="submit" class="btn btn-default" value="editProfil" /><br>
