@@ -41,6 +41,9 @@ public class AuthenticationManager {
             if (!user.getPassword().equals(password))
                 throw new AuthenticationException(AuthenticationException.ReasonCode.INVALID_PASSWORD);
 
+            if (user instanceof Senior && ((Senior) user).getStatus().equals(Senior.SeniorStatus.BLOCKED))
+                throw new AuthenticationException(AuthenticationException.ReasonCode.BLOCKED_USER);
+
             user.setLoginDate();
             userDAO.saveUser(user);
             return user;

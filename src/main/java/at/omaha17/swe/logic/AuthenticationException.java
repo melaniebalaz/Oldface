@@ -2,7 +2,7 @@ package at.omaha17.swe.logic;
 
 public class AuthenticationException extends Exception {
 
-    public enum ReasonCode { DUPLICATE_USER, INVALID_USER, INVALID_PASSWORD }
+    public enum ReasonCode { BLOCKED_USER, DUPLICATE_USER, INVALID_USER, INVALID_PASSWORD }
     private ReasonCode reason;
     private boolean technical_error;
 
