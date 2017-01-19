@@ -20,14 +20,6 @@ public class WallController extends HttpServlet {
      */
     private final JtwigRenderer renderer = JtwigRenderer.defaultRenderer();
 
-    /*
-    public WallController(WallManager manager){
-
-        this.wallManager = wallManager;
-        this.userManager = userManager;
-    }
-    */
-
 
     /**
      * Post Request for posting the new short abstract that should be portrayed on the Users Wall
@@ -51,6 +43,15 @@ public class WallController extends HttpServlet {
 
         String newAbstract = request.getParameter("abstract");
         String newDisplayName = request.getParameter("displayName");
+
+        try {
+            ProfileManager.updateProfile(userName,newDisplayName,newAbstract);
+            response.sendRedirect("/wall");
+        }
+        catch (TechnicalException e){
+            renderer.dispatcherFor("/WEB-INF/templates/error/error.twig")
+                    .render(request, response);
+        }
 
     }
 

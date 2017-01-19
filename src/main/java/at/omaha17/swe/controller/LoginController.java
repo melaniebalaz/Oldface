@@ -68,9 +68,6 @@ public class LoginController extends HttpServlet {
 				response.sendRedirect("/dashboard");
 			}
 
-
-
-
         }catch(AuthenticationException exception){
 			//If the authentication fails redirect to error page
 			if(exception.isTechnical()){
