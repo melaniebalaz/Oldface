@@ -1,7 +1,7 @@
 package at.omaha17.swe.controller;
 
-import at.omaha17.swe.logic.AuthenticationManager;
 import at.omaha17.swe.logic.AuthenticationException;
+import at.omaha17.swe.logic.AuthenticationManager;
 import org.jtwig.web.servlet.JtwigRenderer;
 
 import javax.servlet.ServletException;
@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-import static at.omaha17.swe.model.User.ROLE_SENIOR;
+import static at.omaha17.swe.model.User.*;
 
 /**
  * The Register Controller is responsible for the first time registering of a User.
@@ -25,12 +25,6 @@ public class RegisterController extends HttpServlet {
      */
     private final JtwigRenderer renderer = JtwigRenderer.defaultRenderer();
 
-    /*
-    @Inject
-    public RegisterController(UserManager manager) {
-        this.manager = manager;
-    }
-    */
 
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -48,14 +42,31 @@ public class RegisterController extends HttpServlet {
 
         String name = request.getParameter("username");
         String password = request.getParameter("password");
+        String role = request.getParameter("role");
 
         try {
-            AuthenticationManager.registerUser(ROLE_SENIOR, name, password);
 
             //redirect to the wall page
             HttpSession session=request.getSession();
             session.setAttribute("userName", name);
-            response.sendRedirect("/wall");
+
+
+            if (role.equals("Senior")){
+                AuthenticationManager.registerUser(ROLE_SENIOR, name, password);
+                response.sendRedirect("/wall");
+            }
+
+            else if(role.equals("Admin")) {
+                AuthenticationManager.registerUser(ROLE_ADMIN, name, password);
+                response.sendRedirect("/dashboard");
+            }
+
+            else if(role.equals("Researcher")){
+                AuthenticationManager.registerUser(ROLE_RESEARCHER, name, password);
+                response.sendRedirect("/dashboard");
+
+            }
+
 
         } catch (AuthenticationException exception){
             if (exception.isTechnical())

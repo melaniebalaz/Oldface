@@ -18,7 +18,7 @@
 }
 
 .jumbotron-image{
-    background: url("/img/oldface.png") no-repeat;
+    background: url("/img/oldface.png") center no-repeat;
     width:100%;
 }
 
