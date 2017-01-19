@@ -50,7 +50,7 @@
                 </form>
                 {%  endif %}
 
-                {% if NotMyWall %}
+                {% if myWall == false %}
                     <form method="post" action="/followUser" name="follow">
                         <input type="submit" class="btn btn-primary" value="User folgen">
                     </form>
@@ -65,7 +65,7 @@
             </div>
             <div class="container">
                     <div class="col-sm-6">
-                        {% if editProfile %}
+                        {% if myWall %}
                         <form method="post" action="/wall" name="kurzbeschreibung">
                             <p>
                             <h3>Name:</h3>
