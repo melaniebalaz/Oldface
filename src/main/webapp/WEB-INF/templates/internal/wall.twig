@@ -15,10 +15,9 @@
             <div class="col-sm-3">
                 <img src="/img/Avatar.jpg" alt="Profilbild" height=150px width=150px class="img-thumbnail"><br><br>
 
-
                 {% if editProfile %}
                 <form method="post" action="/editProfile" name="editProfile">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">edit Profil</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">edit Profil</button>
 
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                     <div class="modal-dialog" role="document">
@@ -50,7 +49,7 @@
                 </form>
                 {%  endif %}
 
-                {% if myWall == false %}
+                {% if NotMyWall %}
                     <form method="post" action="/followUser" name="follow">
                         <input type="submit" class="btn btn-primary" value="User folgen">
                     </form>
@@ -65,7 +64,7 @@
             </div>
             <div class="container">
                     <div class="col-sm-6">
-                        {% if myWall %}
+                        {% if editProfile %}
                         <form method="post" action="/wall" name="kurzbeschreibung">
                             <p>
                             <h3>Name:</h3>
