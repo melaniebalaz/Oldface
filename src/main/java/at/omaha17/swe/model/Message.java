@@ -51,7 +51,12 @@ public abstract class Message implements Serializable, Comparable<Message> {
     }
 
     @Override
-    public int compareTo(Message o) {
-        return getCreationDate().compareTo(o.getCreationDate());
+    public int compareTo(Message message) {
+        return this.getCreationDate().compareTo(message.getCreationDate());
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return this.getMessageid().equals(((Message) obj).getMessageid());
     }
 }
