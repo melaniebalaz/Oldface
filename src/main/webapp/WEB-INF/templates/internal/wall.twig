@@ -15,10 +15,10 @@
             <div class="col-sm-3">
                 <img src="/img/Avatar.jpg" alt="Profilbild" height=150px width=150px class="img-thumbnail"><br><br>
 
-                {% if editProfile %}
-                <form method="post" action="/editProfile" name="editProfile">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">edit Profil</button>
+                {% if myWall %}
 
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">edit Profil</button>
+                {%  endif %}
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -27,7 +27,7 @@
                                 <h4 class="modal-title" id="exampleModalLabel">Profil bearbeiten</h4>
                             </div>
                             <div class="modal-body">
-                                <form>
+                                <form method="post" action="/editProfile" name="editProfile">
                                     <div class="form-group">
                                         <label for="recipient-name" class="control-label">Profilname:</label>
                                         <input type="text" class="form-control" name="profilname" placeholder="Name" value="" required/>
@@ -47,7 +47,7 @@
                     </div>
                     <br>
                 </form>
-                {%  endif %}
+
 
                 {% if NotMyWall %}
                     <form method="post" action="/followUser" name="follow">
@@ -64,7 +64,7 @@
             </div>
             <div class="container">
                     <div class="col-sm-6">
-                        {% if editProfile %}
+                        {% if myWall %}
                         <form method="post" action="/wall" name="kurzbeschreibung">
                             <p>
                             <h3>Name:</h3>
