@@ -28,7 +28,7 @@
 
                 <form method="post" action="/showFriends" name="showFriends">
                     <input type="submit" class="btn btn-default disabled" value="Freunde anzeigen">
-                </form><br>S
+                </form><br>
 
 
 
@@ -87,7 +87,7 @@
                                     <br>
                                     <ul class="list-group">
                                         {% for comment in post.comments %}
-                                        <li class="list-group-item" style="background-color:lightgrey;">
+                                        <li class="list-group-item">
                                             {{comment.content}} von <span class="blue-text"> {{comment.author}} </span>
                                         </li>
                                         {% endfor%}

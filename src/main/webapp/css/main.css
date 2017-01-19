@@ -29,3 +29,12 @@
 .blue-text {
     color:#337ab7;
 }
+
+.list-group-item{
+    background-color: lightsteelblue;
+    margin-bottom: 5px;
+}
+
+.panel-body{
+    background-color: lightgoldenrodyellow;
+}
