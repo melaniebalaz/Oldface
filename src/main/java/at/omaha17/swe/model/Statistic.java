@@ -9,6 +9,8 @@ public class Statistic {
     private int numberOfCommentsPerPost;
     private int commentsPerDay;
     private int commentLength;
+    private int loginsPerDay;
+    private double avgPostsPerUser;
 
     public String getUserCount() {
         return userCount;
@@ -64,6 +66,22 @@ public class Statistic {
 
     public void setCommentLength(int commentLength) {
         this.commentLength = commentLength;
+    }
+
+    public int getLoginsPerDay() {
+        return loginsPerDay;
+    }
+
+    public void setLoginsPerDay(int loginsPerDay) {
+        this.loginsPerDay = loginsPerDay;
+    }
+
+    public double getAvgPostsPerUser() {
+        return avgPostsPerUser;
+    }
+
+    public void setAvgPostsPerUser(double avgPostsPerUser) {
+        this.avgPostsPerUser = avgPostsPerUser;
     }
 
 }
