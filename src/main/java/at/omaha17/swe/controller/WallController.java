@@ -81,6 +81,7 @@ public class WallController extends HttpServlet {
                     .with("abstract", wall.getUser().getAbstract())
                     .with("posts", wall.getPosts())
                     .with("editProfile", true)
+                    .with("displayName", wall.getUser().getDisplayName())
                     .render(request, response);
         }
 
