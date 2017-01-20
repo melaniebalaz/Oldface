@@ -84,11 +84,18 @@ public class LoginController extends HttpServlet {
 					renderer.dispatcherFor("/WEB-INF/templates/external/login.twig")
 							.with("blocked", true)
 							.render(request,response);
+					break;
 					}
 				case INVALID_PASSWORD:
 					renderer.dispatcherFor("/WEB-INF/templates/external/login.twig")
 							.with("error", true)
 							.render(request,response);
+					break;
+				case INVALID_USER:
+					renderer.dispatcherFor("/WEB-INF/templates/external/login.twig")
+							.with("error", true)
+							.render(request,response);
+					break;
 			}
 		}
 
