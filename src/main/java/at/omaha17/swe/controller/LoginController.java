@@ -70,6 +70,7 @@ public class LoginController extends HttpServlet {
 
         }
         catch(AuthenticationException exception){
+
 			//If the authentication fails redirect to error page
 			if(exception.isTechnical()){
 			    //This later needs to be redirected to the general error twig page
@@ -90,7 +91,7 @@ public class LoginController extends HttpServlet {
 							.render(request,response);
 			}
 		}
-		
+
 	}
 
 	//After login redirect to Wall

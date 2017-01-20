@@ -6,13 +6,14 @@ import org.jtwig.web.servlet.JtwigRenderer;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
 @WebServlet("/block")
-public class BlockUserController {
+public class BlockUserController extends HttpServlet {
 
 
     private final JtwigRenderer renderer = JtwigRenderer.defaultRenderer();
