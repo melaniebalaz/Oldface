@@ -31,13 +31,7 @@ public class WallController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 
-        HttpSession session=request.getSession();
-
-        //If the user it not logged in, redirect to error page
-        if(session.getAttribute("userName") == null){
-            renderer.dispatcherFor("/WEB-INF/templates/error/error.twig")
-                    .render(request, response);
-        }
+        HttpSession session=request.getSession(false);
 
         String userName = (String) session.getAttribute("userName");
 

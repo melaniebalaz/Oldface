@@ -32,7 +32,7 @@ public class WallPostController extends HttpServlet {
 
         String postContent = request.getParameter("blogPost");
 
-        HttpSession session=request.getSession();
+        HttpSession session=request.getSession(false);
         String userName = (String) session.getAttribute("userName");
 
         try {

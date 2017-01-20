@@ -24,7 +24,7 @@ public class WallCommentController extends HttpServlet {
         String comment = request.getParameter("comment");
         String postID = request.getParameter("postID");
 
-        HttpSession session=request.getSession();
+        HttpSession session=request.getSession(false);
         String userName = (String) session.getAttribute("userName");
 
         try {

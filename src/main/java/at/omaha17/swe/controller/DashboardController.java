@@ -22,14 +22,7 @@ public class DashboardController extends HttpServlet {
     private final JtwigRenderer renderer = JtwigRenderer.defaultRenderer();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session=request.getSession();
-
-
-        //If the user it not logged in, redirect to error page
-        if(session.getAttribute("userName") == null){
-            renderer.dispatcherFor("/WEB-INF/templates/error/error.twig")
-                    .render(request, response);
-        }
+        HttpSession session=request.getSession(false);
 
         String userName = (String) session.getAttribute("userName");
 
