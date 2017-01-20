@@ -16,14 +16,14 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4> <span class="blue-text "> {{post.author}} </span> | {{post.creationDate.getTime()|date("dd-MM-yyyy")}} </h4>
-                            <form method="get" action="/admin" name="block">
+                            <form method="post" action="/block" name="block">
                                 <input type="submit" class="btn btn-default" value="User blocken">
                             </form>
                         </div>
                         <div class="panel-body">
                             {{post.content}}
 
-                            <form method="post" action="/admin" name="delPost">
+                            <form method="post" action="/delete" name="delPost">
                                 <input type="hidden" name="postIDdelete" value={{ post.messageid }}>
                                 <input type="submit" class="btn btn-default" value="Post löschen">
                             </form>
@@ -39,7 +39,7 @@
                                     <li class="list-group-item">
                                         {{comment.content}} von <span class="blue-text"> {{comment.author}} </span>
 
-                                        <form method="post" action="/deleteComment" name="delComment">
+                                        <form method="post" action="/delete" name="delComment">
                                             <input type="hidden" name="commentIDdelete " value={{ comment.messageid }}>
                                             <input type="submit" class="btn btn-default" value="Kommentar löschen">
                                         </form>

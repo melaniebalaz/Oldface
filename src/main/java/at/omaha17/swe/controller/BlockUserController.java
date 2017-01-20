@@ -6,31 +6,29 @@ import org.jtwig.web.servlet.JtwigRenderer;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 
-@WebServlet("/admin")
-public class AdminFunctionalityController extends HttpServlet {
+@WebServlet("/block")
+public class BlockUserController {
 
 
     private final JtwigRenderer renderer = JtwigRenderer.defaultRenderer();
 
     /**
-     * POST Request for deleting a post
+     * POST Request for blocking a User
      * @param request
      * @param response
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 
-        String postID = request.getParameter("postIDdelete");
+        String userName = request.getParameter("userName");
 
         try {
-            MessageManager.deleteMessage(postID);
+            MessageManager.deleteMessage(userName);
 
         }catch (TechnicalException e){
             renderer.dispatcherFor("/WEB-INF/templates/error/error.twig")
@@ -38,15 +36,6 @@ public class AdminFunctionalityController extends HttpServlet {
         }
 
         response.sendRedirect("/dashboard");
-
-    }
-
-    /**
-     * GET Request for blocking a User
-     * @param request
-     * @param response
-     */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 
     }
 }
