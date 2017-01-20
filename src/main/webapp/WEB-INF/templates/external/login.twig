@@ -38,6 +38,12 @@
                     </div>
                 {% endif %}
 
+                {% if blocked %}
+                    <div class="alert alert-danger" role="alert">
+                        <strong>Fehler!</strong> Ihr Account wurde geblockt. Login nicht möglich!
+                    </div>
+                {% endif %}
+
             </div>
         </div>
     </form>
