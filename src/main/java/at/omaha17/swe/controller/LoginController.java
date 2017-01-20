@@ -68,20 +68,29 @@ public class LoginController extends HttpServlet {
 				response.sendRedirect("/dashboard");
 			}
 
-        }catch(AuthenticationException exception){
+        }
+        catch(AuthenticationException exception){
 			//If the authentication fails redirect to error page
 			if(exception.isTechnical()){
 			    //This later needs to be redirected to the general error twig page
                 renderer.dispatcherFor("/WEB-INF/templates/error/error.twig")
                         .render(request,response);
             }
-			else{
-                renderer.dispatcherFor("/WEB-INF/templates/external/login.twig")
-                        .with("error", true)
-                        .render(request,response);
-            }
 
-        }
+            //FIND OUT THE REASON OF FAILURE, IF NOT TECHNICAL
+			switch (exception.getReason()) {
+				case BLOCKED_USER: {
+					renderer.dispatcherFor("/WEB-INF/templates/external/login.twig")
+							.with("blocked", true)
+							.render(request,response);
+					}
+				case INVALID_PASSWORD:
+					renderer.dispatcherFor("/WEB-INF/templates/external/login.twig")
+							.with("error", true)
+							.render(request,response);
+			}
+		}
+		
 	}
 
 	//After login redirect to Wall
