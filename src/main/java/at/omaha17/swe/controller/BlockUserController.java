@@ -1,6 +1,6 @@
 package at.omaha17.swe.controller;
 
-import at.omaha17.swe.logic.MessageManager;
+import at.omaha17.swe.logic.ProfileManager;
 import at.omaha17.swe.logic.TechnicalException;
 import org.jtwig.web.servlet.JtwigRenderer;
 
@@ -28,7 +28,7 @@ public class BlockUserController {
         String userName = request.getParameter("userName");
 
         try {
-            MessageManager.deleteMessage(userName);
+            ProfileManager.blockProfile(userName);
 
         }catch (TechnicalException e){
             renderer.dispatcherFor("/WEB-INF/templates/error/error.twig")
