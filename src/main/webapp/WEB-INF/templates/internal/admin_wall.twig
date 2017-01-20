@@ -17,6 +17,7 @@
                         <div class="panel-heading">
                             <h4> <span class="blue-text "> {{post.author}} </span> | {{post.creationDate.getTime()|date("dd-MM-yyyy")}} </h4>
                             <form method="post" action="/block" name="block">
+                                <input type="hidden" name="userName" value={{ post.author }}>
                                 <input type="submit" class="btn btn-default" value="User blocken">
                             </form>
                         </div>
