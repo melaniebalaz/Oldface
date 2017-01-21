@@ -52,18 +52,20 @@ public class RegisterController extends HttpServlet {
             session.setAttribute("role", role);
 
 
-            if (role.equals("Senior")){
-                AuthenticationManager.registerUser(ROLE_SENIOR, name, password);
-                response.sendRedirect("/wall");
-            }
-            else if(role.equals("Admin")) {
-                AuthenticationManager.registerUser(ROLE_ADMIN, name, password);
-                response.sendRedirect("/dashboard");
-            }
-            else if(role.equals("Researcher")){
-                AuthenticationManager.registerUser(ROLE_RESEARCHER, name, password);
-                response.sendRedirect("/dashboard");
+            switch (role) {
+                case "Senior":
+                    AuthenticationManager.registerUser(ROLE_SENIOR, name, password);
+                    response.sendRedirect("/wall");
+                    break;
+                case "Admin":
+                    AuthenticationManager.registerUser(ROLE_ADMIN, name, password);
+                    response.sendRedirect("/dashboard");
+                    break;
+                case "Researcher":
+                    AuthenticationManager.registerUser(ROLE_RESEARCHER, name, password);
+                    response.sendRedirect("/dashboard");
 
+                    break;
             }
 
 
