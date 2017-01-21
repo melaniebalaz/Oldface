@@ -1,5 +1,7 @@
 package at.omaha17.swe.controller;
 
+import at.omaha17.swe.logic.ProfileManager;
+import at.omaha17.swe.logic.TechnicalException;
 import org.jtwig.web.servlet.JtwigRenderer;
 
 import javax.servlet.ServletException;
@@ -29,7 +31,7 @@ public class SearchUserController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 
         HttpSession session = request.getSession(false);
-        String userName = (String)session.getAttribute("userName");
+        String myUserName = (String)session.getAttribute("userName");
 
 
         //Get the parameter from the GET Request, userName of the user searched for
@@ -38,13 +40,23 @@ public class SearchUserController extends HttpServlet {
         //TODO check whether the profile actually exists or not
         //If the searched for User does not exist, render the original Wall with the search Error set to true
 
+        try {
+            Boolean userExists = ProfileManager.isProfile(searchUserName);
 
-        //Render the own page
-        response.sendRedirect("/wall?userName="+ URLEncoder.encode(userName, "UTF-8")+"&myWall="+1+"&userNotFound="+1);
+            if (userExists) {
+                //Render the page of the other User, encode the Username
+                response.sendRedirect("/wall?userName="+ URLEncoder.encode(searchUserName, "UTF-8")+"&myWall="+0+"&userNotFound="+0);
+            }
+            else {
+                //Render the own page
+                response.sendRedirect("/wall?userName="+ URLEncoder.encode(myUserName, "UTF-8")+"&myWall="+1+"&userNotFound="+1);
+            }
 
-        //Render the page of the other User, encode the Username
-       response.sendRedirect("/wall?userName="+ URLEncoder.encode(searchUserName, "UTF-8")+"&myWall="+0+"&userNotFound="+0);
-
+        }catch(TechnicalException e){
+            renderer.dispatcherFor("/WEB-INF/templates/error/error.twig")
+                    .render(request, response);
+        }
+        
     }
 
 }
