@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.net.URLEncoder;
 
 /**
  * Servlet implementation class LoginController
@@ -62,7 +63,7 @@ public class LoginController extends HttpServlet {
 
 			//If the user is a Senior, show their wall, otherwise redirect to the dashboard for Admin and Researcher
 			if (role.equals("Senior")){
-				response.sendRedirect("/wall");
+				response.sendRedirect(("/wall?userName="+ URLEncoder.encode(name, "UTF-8")+"&myWall="+1+"&userNotFound="+0));
 			}
 			else {
 				response.sendRedirect("/dashboard");

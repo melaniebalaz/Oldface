@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.net.URLEncoder;
 
 import static at.omaha17.swe.model.User.*;
 
@@ -49,13 +50,12 @@ public class RegisterController extends HttpServlet {
             //redirect to the wall page
             HttpSession session=request.getSession();
             session.setAttribute("userName", name);
-            session.setAttribute("role", role);
 
 
             switch (role) {
                 case "Senior":
                     AuthenticationManager.registerUser(ROLE_SENIOR, name, password);
-                    response.sendRedirect("/wall");
+                    response.sendRedirect(("/wall?userName="+ URLEncoder.encode(name, "UTF-8")+"&myWall="+1+"&userNotFound="+0));
                     break;
                 case "Admin":
                     AuthenticationManager.registerUser(ROLE_ADMIN, name, password);
