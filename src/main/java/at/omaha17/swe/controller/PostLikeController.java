@@ -5,11 +5,14 @@ import at.omaha17.swe.logic.TechnicalException;
 import org.jtwig.web.servlet.JtwigRenderer;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URLEncoder;
+
+@WebServlet("/LikeMessage")
 
 public class PostLikeController extends HttpServlet {
 
