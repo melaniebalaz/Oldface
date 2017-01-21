@@ -12,8 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URLEncoder;
 
+<<<<<<< HEAD
 
 @WebServlet("/like")
+=======
+@WebServlet("/LikeMessage")
+
+>>>>>>> d7e87197bdde7384718e6c30ce05398b055526df
 public class PostLikeController extends HttpServlet {
 
 
