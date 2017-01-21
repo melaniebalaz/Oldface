@@ -23,12 +23,12 @@ public class SearchController extends HttpServlet {
     private final JtwigRenderer renderer = JtwigRenderer.defaultRenderer();
 
     /**
-     * This method handles get requests from the searchbar
+     * This method handles get requests from the searchbar and searches for the User in question
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 
-        //Get the parameter from the GET Request
+        //Get the parameter from the GET Request, userName of the user searched for
         String userName = (String)request.getAttribute("userName");
 
         //TODO check whether the profile actually exists or not

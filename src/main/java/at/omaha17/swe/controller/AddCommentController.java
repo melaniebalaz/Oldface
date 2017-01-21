@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet("/comment")
-public class WallCommentController extends HttpServlet {
+public class AddCommentController extends HttpServlet {
 
 
     /**

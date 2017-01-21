@@ -12,10 +12,10 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet("/post")
-public class WallPostController extends HttpServlet {
+public class AddPostController extends HttpServlet {
 
     /**
-    public WallPostController(WallManager manager){
+    public AddPostController(WallManager manager){
         this.manager = manager;
     }
      **/
