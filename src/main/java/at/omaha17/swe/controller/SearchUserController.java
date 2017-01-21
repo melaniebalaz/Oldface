@@ -36,9 +36,7 @@ public class SearchUserController extends HttpServlet {
 
         //Get the parameter from the GET Request, userName of the user searched for
         String searchUserName = (String)request.getAttribute("userName");
-
-        //TODO check whether the profile actually exists or not
-        //If the searched for User does not exist, render the original Wall with the search Error set to true
+        
 
         try {
             Boolean userExists = ProfileManager.isProfile(searchUserName);
@@ -56,7 +54,7 @@ public class SearchUserController extends HttpServlet {
             renderer.dispatcherFor("/WEB-INF/templates/error/error.twig")
                     .render(request, response);
         }
-        
+
     }
 
 }
