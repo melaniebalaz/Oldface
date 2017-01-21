@@ -42,7 +42,7 @@ public class EditProfileInfoController extends HttpServlet {
 
         try {
             ProfileManager.updateProfile(userName,newDisplayName,newAbstract);
-            response.sendRedirect("/wall?userName="+ URLEncoder.encode(userName, "UTF-8")+"&myWall="+1+"&userNotFound="+0);
+            response.sendRedirect("/wall?userName="+ URLEncoder.encode(userName, "UTF-8")+"&userNotFound="+0);
         }
         catch (TechnicalException e){
             renderer.dispatcherFor("/WEB-INF/templates/error/error.twig")

@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet("/wall")
@@ -29,9 +30,17 @@ public class WallController extends HttpServlet {
 
         //Username of the User whichever page has been requested
         String userName = (String)request.getAttribute("userName");
-        Boolean myWall = (Boolean)request.getAttribute("myWall");
         Boolean userNotFound = (Boolean)request.getAttribute("userNotFound");
 
+
+        HttpSession session=request.getSession(false);
+        String myUserName = (String)session.getAttribute("userName");
+
+        Boolean myWall = false;
+        //Is it my own wall
+        if (userName.equals(myUserName)){
+            myWall = true;
+        }
 
 
         try {

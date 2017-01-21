@@ -41,7 +41,7 @@ public class AddCommentController extends HttpServlet {
 
         try {
             MessageManager.addComment(postID, wallUserName, comment);
-            response.sendRedirect(("/wall?userName="+ URLEncoder.encode(wallUserName, "UTF-8")+"&myWall="+myWall+"&userNotFound="+0));
+            response.sendRedirect(("/wall?userName="+ URLEncoder.encode(wallUserName, "UTF-8")+"&userNotFound="+0));
         }catch(TechnicalException exception){
             renderer.dispatcherFor("/WEB-INF/templates/error/error.twig")
                     .render(request, response);

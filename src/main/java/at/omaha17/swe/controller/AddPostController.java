@@ -52,7 +52,7 @@ public class AddPostController extends HttpServlet {
             //add the new post
             MessageManager.addPost(wallUserName, myUserName, postContent);
             //redirect to the Wall Controller which loads all the current posts
-            response.sendRedirect(("/wall?userName="+ URLEncoder.encode(wallUserName, "UTF-8")+"&myWall="+myWall+"&userNotFound="+0));
+            response.sendRedirect(("/wall?userName="+ URLEncoder.encode(wallUserName, "UTF-8")+"&userNotFound="+0));
 
         }catch(TechnicalException exception){
             renderer.dispatcherFor("/WEB-INF/templates/error/error.twig")

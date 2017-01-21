@@ -36,18 +36,18 @@ public class SearchUserController extends HttpServlet {
 
         //Get the parameter from the GET Request, userName of the user searched for
         String searchUserName = (String)request.getAttribute("userName");
-        
+
 
         try {
             Boolean userExists = ProfileManager.isProfile(searchUserName);
 
             if (userExists) {
                 //Render the page of the other User, encode the Username
-                response.sendRedirect("/wall?userName="+ URLEncoder.encode(searchUserName, "UTF-8")+"&myWall="+0+"&userNotFound="+0);
+                response.sendRedirect("/wall?userName="+ URLEncoder.encode(searchUserName, "UTF-8")+"&userNotFound="+0);
             }
             else {
                 //Render the own page
-                response.sendRedirect("/wall?userName="+ URLEncoder.encode(myUserName, "UTF-8")+"&myWall="+1+"&userNotFound="+1);
+                response.sendRedirect("/wall?userName="+ URLEncoder.encode(myUserName, "UTF-8")+"&userNotFound="+1);
             }
 
         }catch(TechnicalException e){

@@ -55,7 +55,7 @@ public class RegisterController extends HttpServlet {
             switch (role) {
                 case "Senior":
                     AuthenticationManager.registerUser(ROLE_SENIOR, name, password);
-                    response.sendRedirect(("/wall?userName="+ URLEncoder.encode(name, "UTF-8")+"&myWall="+1+"&userNotFound="+0));
+                    response.sendRedirect(("/wall?userName="+ URLEncoder.encode(name, "UTF-8")+"&userNotFound="+0));
                     break;
                 case "Admin":
                     AuthenticationManager.registerUser(ROLE_ADMIN, name, password);
