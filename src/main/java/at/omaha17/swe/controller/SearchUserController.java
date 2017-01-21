@@ -10,11 +10,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 
 @WebServlet("/search")
-public class SearchController extends HttpServlet {
+public class SearchUserController extends HttpServlet {
 
 
     /**
@@ -23,18 +24,26 @@ public class SearchController extends HttpServlet {
     private final JtwigRenderer renderer = JtwigRenderer.defaultRenderer();
 
     /**
-     * This method handles get requests from the searchbar and searches for the User in question
+     * This method handles get requests from the searchbar and searches for the User in question, and renders their wall if found.
+     * If not it renders the Users own wall with the user Not found error
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 
+        HttpSession session = request.getSession(false);
+        String userName = (String)session.getAttribute("userName");
+
+
         //Get the parameter from the GET Request, userName of the user searched for
-        String userName = (String)request.getAttribute("userName");
+        String searchUserName = (String)request.getAttribute("userName");
 
         //TODO check whether the profile actually exists or not
+        //If the searched for User does not exist, render the original Wall with the search Error set to true
 
+
+        //Render the page of the other User
         try {
-            Wall wall = VisualizationManager.getWall(userName);
+            Wall wall = VisualizationManager.getWall(searchUserName);
 
             renderer.dispatcherFor("/WEB-INF/templates/internal/wall.twig")
                     .with("name", wall.getUser().getUsername())
