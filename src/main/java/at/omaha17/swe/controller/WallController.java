@@ -46,6 +46,10 @@ public class WallController extends HttpServlet {
             myWall = true;
         }
 
+        if(userName.equals("home")){
+            userName = myUserName;
+        }
+
 
         try {
             Wall wall = VisualizationManager.getWall(userName);
