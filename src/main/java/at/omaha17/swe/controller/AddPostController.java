@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.net.URLEncoder;
 
 @WebServlet("/post")
 public class AddPostController extends HttpServlet {
@@ -32,14 +33,26 @@ public class AddPostController extends HttpServlet {
 
         String postContent = request.getParameter("blogPost");
 
+        //person whose profile
+        String wallUserName = request.getParameter("userName");
+
         HttpSession session=request.getSession(false);
-        String userName = (String) session.getAttribute("userName");
+
+        String myUserName = (String) session.getAttribute("userName");
+
+
+        Boolean myWall = false;
+        //Is it my own wall
+        if (wallUserName.equals(myUserName)){
+            myWall = true;
+        }
+
 
         try {
             //add the new post
-            MessageManager.addPost(userName, userName, postContent);
+            MessageManager.addPost(wallUserName, myUserName, postContent);
             //redirect to the Wall Controller which loads all the current posts
-            response.sendRedirect("/wall");
+            response.sendRedirect(("/wall?userName="+ URLEncoder.encode(wallUserName, "UTF-8")+"&myWall="+myWall+"&userNotFound="+0));
 
         }catch(TechnicalException exception){
             renderer.dispatcherFor("/WEB-INF/templates/error/error.twig")

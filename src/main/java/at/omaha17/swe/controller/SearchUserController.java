@@ -1,8 +1,5 @@
 package at.omaha17.swe.controller;
 
-import at.omaha17.swe.logic.TechnicalException;
-import at.omaha17.swe.logic.VisualizationManager;
-import at.omaha17.swe.model.Wall;
 import org.jtwig.web.servlet.JtwigRenderer;
 
 import javax.servlet.ServletException;
@@ -12,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.net.URLEncoder;
 
 
 @WebServlet("/search")
@@ -41,21 +39,11 @@ public class SearchUserController extends HttpServlet {
         //If the searched for User does not exist, render the original Wall with the search Error set to true
 
 
-        //Render the page of the other User
-        try {
-            Wall wall = VisualizationManager.getWall(searchUserName);
+        //Render the own page
+        response.sendRedirect("/wall?userName="+ URLEncoder.encode(userName, "UTF-8")+"&myWall="+1+"&userNotFound="+1);
 
-            renderer.dispatcherFor("/WEB-INF/templates/internal/wall.twig")
-                    .with("name", wall.getUser().getUsername())
-                    .with("abstract", wall.getUser().getAbstract())
-                    .with("posts", wall.getPosts())
-                    .with("myWall", false)
-                    .with("displayName", wall.getUser().getDisplayName())
-                    .render(request, response);
-        } catch(TechnicalException exception){
-            renderer.dispatcherFor("/WEB-INF/templates/error/error.twig")
-                    .render(request, response);
-        }
+        //Render the page of the other User, encode the Username
+       response.sendRedirect("/wall?userName="+ URLEncoder.encode(searchUserName, "UTF-8")+"&myWall="+0+"&userNotFound="+0);
 
     }
 
