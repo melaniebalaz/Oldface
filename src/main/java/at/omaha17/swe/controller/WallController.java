@@ -29,9 +29,13 @@ public class WallController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         //Username of the User whichever page has been requested
-        String userName = (String)request.getAttribute("userName");
-        Boolean userNotFound = (Boolean)request.getAttribute("userNotFound");
+        String userName = (String)request.getParameter("userName");
+        String userNotFoundParameter = (String)request.getParameter("userNotFound");
 
+        Boolean userNotFound = false;
+        if(userNotFoundParameter.equals("1")){
+            userNotFound = true;
+        }
 
         HttpSession session=request.getSession(false);
         String myUserName = (String)session.getAttribute("userName");
