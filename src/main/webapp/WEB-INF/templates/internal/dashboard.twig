@@ -20,6 +20,7 @@
                         <div class="panel-body">
                            <h3> {{post.content}} </h3>
 
+                           <b class="small">  Likes :  {{ post.likers }}</b>
 
 
                         </div>
@@ -33,6 +34,7 @@
                                     <li class="list-group-item">
                                         {{comment.content}} von <span class="blue-text"> {{comment.author}} </span>
 
+                                       <b class="small">  Likes :  {{ comment.likers }}</b>
 
 
                                     </li>

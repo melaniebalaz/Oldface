@@ -97,7 +97,7 @@
                                     <form method="post" action="/LikePost" name="LikePost">
                                         <input type="hidden" name="postIDlike" value={{ post.messageid }}>
                                         <input type="submit" class="btn btn-default btn-sm" value="Post liken">
-                                        <b class="small">  Likes :  {{ post.likes }}</b>
+                                        <b class="small">  Likes :  {{ post.likers }}</b>
                                     </form>
 
                                 </div>
@@ -120,7 +120,7 @@
                                             <form method="post" action="/LikeComment" name="LikeComment">
                                                 <input type="hidden" name="commentIDlike" value={{ commment.messageid }}>
                                                 <input type="submit" class="btn btn-default btn-sm" value="Kommentar liken">
-                                                <b class="small">  Likes :  {{ comment.likes }}</b>
+                                                <b class="small">  Likes :  {{ comment.likers }}</b>
                                             </form>
 
                                         </li>
