@@ -50,11 +50,12 @@ public class FollowerController extends HttpServlet {
 
         String currentPageUserName = request.getParameter("userName");
 
-        HttpSession session = request.getSession(false);
-        String myUserName = (String)session.getAttribute("userName");
-
         try {
             Vector<Senior> followers = ProfileManager.getProfileFollower(currentPageUserName);
+            renderer.dispatcherFor("/WEB-INF/templates/internal/showFriends.twig")
+                    .with("name",currentPageUserName)
+                    .with("friends",followers)
+                    .render(request,response);
             
         }catch(TechnicalException e){
             renderer.dispatcherFor("/WEB-INF/templates/error/error.twig")
