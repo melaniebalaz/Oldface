@@ -40,15 +40,16 @@ public class WallController extends HttpServlet {
         HttpSession session=request.getSession(false);
         String myUserName = (String)session.getAttribute("userName");
 
+        if(userName.equals("home")){
+            userName = myUserName;
+        }
+
         Boolean myWall = false;
         //Is it my own wall
         if (userName.equals(myUserName)){
             myWall = true;
         }
 
-        if(userName.equals("home")){
-            userName = myUserName;
-        }
 
 
         try {
