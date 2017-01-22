@@ -95,7 +95,7 @@
                                     <h3>{{post.content}}</h3>
 
                                     <form method="post" action="/like" name="LikePost">
-                                        <input type="hidden" name="postIDlike" value={{ post.messageid }}>
+                                        <input type="hidden" name="id" value={{ post.messageid }}>
                                         <input type="hidden" name="userName" value={{ name }}>
                                         <input type="submit" class="btn btn-default btn-sm" value="Post liken">
                                         <b class="small">  Likes :  {{ post.likers }}</b>
@@ -119,7 +119,7 @@
                                             {{comment.content}} von <span class="blue-text"> {{comment.author}} </span>
 
                                             <form method="post" action="/like" name="LikeComment">
-                                                <input type="hidden" name="commentIDlike" value={{ commment.messageid }}>
+                                                <input type="hidden" name="id" value={{ commment.messageid }}>
                                                 <input type="hidden" name="userName" value={{ name }}>
                                                 <input type="submit" class="btn btn-default btn-sm" value="Kommentar liken">
                                                 <b class="small">  Likes :  {{ comment.likers }}</b>

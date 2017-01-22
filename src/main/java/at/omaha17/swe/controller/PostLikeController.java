@@ -31,12 +31,10 @@ public class PostLikeController extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String postID = request.getParameter("postIDlike");
+        String postID = request.getParameter("id");
 
         //Which profile are we on
         String wallUserName = request.getParameter("userName");
-        //Parameter whether the Like was made on the Dashboard, or on the Wall
-        //If Wall, which wall
 
         try {
             MessageManager.likeMessage(postID,wallUserName);
