@@ -53,13 +53,13 @@
 
 
 
-                {% if NotMyWall %}
-                    <form method="post" action="/followUser" name="follow">
+                {% if myWall == false %}
+                    <form method="post" action="/follow" name="follow">
                         <input type="submit" class="btn btn-primary" value="User folgen">
                     </form>
                 {%  endif %}
 
-                <form method="post" action="/showFriends" name="showFriends">
+                <form method="get" action="/follow" name="showFriends">
                     <input type="submit" class="btn btn-default" value="Freunde anzeigen">
                 </form><br>
 
@@ -90,12 +90,12 @@
 
                         {% for post in posts %}
                             <div class="panel panel-default">
-                                <div class="panel-heading">{{post.creationDate.getTime()|date("dd-MM-yyyy")}}</div>
+                                <div class="panel-heading"> <span class="blue-text "> {{post.author}} </span> | {{post.creationDate.getTime()|date("dd-MM-yyyy")}}</div>
                                 <div class="panel-body">
                                     <h3>{{post.content}}</h3>
 
-                                    <form method="post" action="/LikeMessage" name="LikePost">
-                                        <input type="hidden" name="postIDlike" value={{ post.messageid }}>
+                                    <form method="post" action="/like" name="LikePost">
+                                        <input type="hidden" name="id" value={{ post.messageid }}>
                                         <input type="hidden" name="userName" value={{ name }}>
                                         <input type="submit" class="btn btn-default btn-sm" value="Post liken">
                                         <b class="small">  Likes :  {{ post.likers }}</b>
@@ -118,8 +118,8 @@
                                         <li class="list-group-item">
                                             {{comment.content}} von <span class="blue-text"> {{comment.author}} </span>
 
-                                            <form method="post" action="/LikeMessage" name="LikeComment">
-                                                <input type="hidden" name="postIDlike" value={{ commment.messageid }}>
+                                            <form method="post" action="/like" name="LikeComment">
+                                                <input type="hidden" name="id" value={{ commment.messageid }}>
                                                 <input type="hidden" name="userName" value={{ name }}>
                                                 <input type="submit" class="btn btn-default btn-sm" value="Kommentar liken">
                                                 <b class="small">  Likes :  {{ comment.likers }}</b>

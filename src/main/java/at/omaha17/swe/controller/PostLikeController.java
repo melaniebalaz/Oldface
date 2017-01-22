@@ -12,8 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URLEncoder;
 
-@WebServlet("/LikeMessage")
-
+@WebServlet("/like")
 public class PostLikeController extends HttpServlet {
 
 
@@ -32,17 +31,15 @@ public class PostLikeController extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String postID = request.getParameter("postIDlike");
+        String postID = request.getParameter("id");
 
         //Which profile are we on
-        String wallUserName = request.getParameter("userName");
-        //Parameter whether the Like was made on the Dashboard, or on the Wall
-        //If Wall, which wall
+        String currentPageUserName = request.getParameter("userName");
 
         try {
-            MessageManager.likeMessage(postID,wallUserName);
+            MessageManager.likeMessage(postID,currentPageUserName);
 
-            response.sendRedirect(("/wall?userName="+ URLEncoder.encode(wallUserName, "UTF-8")+"&userNotFound="+0));
+            response.sendRedirect(("/wall?userName="+ URLEncoder.encode(currentPageUserName, "UTF-8")+"&userNotFound="+0));
 
         }catch (TechnicalException e){
             renderer.dispatcherFor("/WEB-INF/templates/error/error.twig")

@@ -49,6 +49,7 @@ public class DashboardController extends HttpServlet {
             else if (role.equals("Researcher")){
                 renderer.dispatcherFor("/WEB-INF/templates/internal/researcher_wall.twig")
                         .with("name", dashboard.getUser().getUsername())
+                        .with("stats",VisualizationManager.getStatistic())
                         .render(request,response);
             }
 

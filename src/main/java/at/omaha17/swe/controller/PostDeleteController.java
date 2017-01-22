@@ -26,7 +26,7 @@ public class PostDeleteController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 
-        String postID = request.getParameter("postIDdelete");
+        String postID = request.getParameter("id");
 
         try {
             MessageManager.deleteMessage(postID);

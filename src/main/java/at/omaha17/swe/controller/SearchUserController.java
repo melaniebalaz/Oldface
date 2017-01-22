@@ -35,7 +35,7 @@ public class SearchUserController extends HttpServlet {
 
 
         //Get the parameter from the GET Request, userName of the user searched for
-        String searchUserName = (String)request.getAttribute("userName");
+        String searchUserName = request.getParameter("userName");
 
 
         try {
