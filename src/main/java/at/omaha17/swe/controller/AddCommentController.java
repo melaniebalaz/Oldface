@@ -27,7 +27,7 @@ public class AddCommentController extends HttpServlet {
         String postID = request.getParameter("postID");
 
         //Username of who made the comment
-        String wallUserName = request.getParameter("wallUserName");
+        String currentPageUserName = request.getParameter("wallUserName");
 
         HttpSession session=request.getSession(false);
         String myUserName = (String) session.getAttribute("userName");
@@ -35,13 +35,13 @@ public class AddCommentController extends HttpServlet {
 
         Boolean myWall = false;
         //Is it my own wall
-        if (wallUserName.equals(myUserName)){
+        if (currentPageUserName.equals(myUserName)){
             myWall = true;
         }
 
         try {
-            MessageManager.addComment(postID, wallUserName, comment);
-            response.sendRedirect(("/wall?userName="+ URLEncoder.encode(wallUserName, "UTF-8")+"&userNotFound="+0));
+            MessageManager.addComment(postID, currentPageUserName, comment);
+            response.sendRedirect(("/wall?userName="+ URLEncoder.encode(currentPageUserName, "UTF-8")+"&userNotFound="+0));
         }catch(TechnicalException exception){
             renderer.dispatcherFor("/WEB-INF/templates/error/error.twig")
                     .render(request, response);

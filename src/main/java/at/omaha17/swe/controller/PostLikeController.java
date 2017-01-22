@@ -34,12 +34,12 @@ public class PostLikeController extends HttpServlet {
         String postID = request.getParameter("id");
 
         //Which profile are we on
-        String wallUserName = request.getParameter("userName");
+        String currentPageUserName = request.getParameter("userName");
 
         try {
-            MessageManager.likeMessage(postID,wallUserName);
+            MessageManager.likeMessage(postID,currentPageUserName);
 
-            response.sendRedirect(("/wall?userName="+ URLEncoder.encode(wallUserName, "UTF-8")+"&userNotFound="+0));
+            response.sendRedirect(("/wall?userName="+ URLEncoder.encode(currentPageUserName, "UTF-8")+"&userNotFound="+0));
 
         }catch (TechnicalException e){
             renderer.dispatcherFor("/WEB-INF/templates/error/error.twig")

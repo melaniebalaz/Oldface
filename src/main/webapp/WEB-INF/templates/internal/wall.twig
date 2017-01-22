@@ -54,12 +54,12 @@
 
 
                 {% if myWall == false %}
-                    <form method="post" action="/followUser" name="follow">
+                    <form method="post" action="/follow" name="follow">
                         <input type="submit" class="btn btn-primary" value="User folgen">
                     </form>
                 {%  endif %}
 
-                <form method="post" action="/showFriends" name="showFriends">
+                <form method="get" action="/follow" name="showFriends">
                     <input type="submit" class="btn btn-default" value="Freunde anzeigen">
                 </form><br>
 

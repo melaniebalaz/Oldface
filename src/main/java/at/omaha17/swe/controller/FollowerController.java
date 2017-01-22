@@ -2,6 +2,7 @@ package at.omaha17.swe.controller;
 
 import at.omaha17.swe.logic.ProfileManager;
 import at.omaha17.swe.logic.TechnicalException;
+import at.omaha17.swe.model.Senior;
 import org.jtwig.web.servlet.JtwigRenderer;
 
 import javax.servlet.ServletException;
@@ -12,11 +13,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.net.URLEncoder;
+import java.util.Vector;
 
 
 @WebServlet("/follow")
-public class FollowUserController extends HttpServlet {
+public class FollowerController extends HttpServlet {
 
+    /**
+     * The jtwig file renderer
+     */
     private final JtwigRenderer renderer = JtwigRenderer.defaultRenderer();
 
 
@@ -36,4 +41,25 @@ public class FollowUserController extends HttpServlet {
 
     }
 
+
+    /**
+     * Request for rendering a Wall
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        String currentPageUserName = request.getParameter("userName");
+
+        HttpSession session = request.getSession(false);
+        String myUserName = (String)session.getAttribute("userName");
+
+        try {
+            Vector<Senior> followers = ProfileManager.getProfileFollower(currentPageUserName);
+            
+        }catch(TechnicalException e){
+            renderer.dispatcherFor("/WEB-INF/templates/error/error.twig")
+                    .render(request,response);
+        }
+
+    }
 }

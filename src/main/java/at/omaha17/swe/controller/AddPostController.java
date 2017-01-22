@@ -34,7 +34,7 @@ public class AddPostController extends HttpServlet {
         String postContent = request.getParameter("blogPost");
 
         //person whose profile
-        String wallUserName = request.getParameter("userName");
+        String currentPageUserName = request.getParameter("userName");
 
         HttpSession session=request.getSession(false);
 
@@ -43,16 +43,16 @@ public class AddPostController extends HttpServlet {
 
         Boolean myWall = false;
         //Is it my own wall
-        if (wallUserName.equals(myUserName)){
+        if (currentPageUserName.equals(myUserName)){
             myWall = true;
         }
 
 
         try {
             //add the new post
-            MessageManager.addPost(wallUserName, myUserName, postContent);
+            MessageManager.addPost(currentPageUserName, myUserName, postContent);
             //redirect to the Wall Controller which loads all the current posts
-            response.sendRedirect(("/wall?userName="+ URLEncoder.encode(wallUserName, "UTF-8")+"&userNotFound="+0));
+            response.sendRedirect(("/wall?userName="+ URLEncoder.encode(currentPageUserName, "UTF-8")+"&userNotFound="+0));
 
         }catch(TechnicalException exception){
             renderer.dispatcherFor("/WEB-INF/templates/error/error.twig")
