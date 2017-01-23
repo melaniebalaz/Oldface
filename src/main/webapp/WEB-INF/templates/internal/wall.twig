@@ -5,7 +5,7 @@
 {% block content %}
 
     <div class="container-fluid jumbotron">
-
+        {% if userNotFound %} <div class="container"><h3>gesuchter User nicht gefunden! zurueck auf der eigenen Seite</h3></div>{% endif %}
         <div class="container" >
             <br>
             <br>
@@ -54,13 +54,13 @@
 
 
                 {% if myWall == false %}
-                    <form method="post" action="/follow" name="follow">
-                        <input type="submit" class="btn btn-primary" value="User folgen">
+                    <form method="post" action="/follow" name="followsUser">
+                        <input type="submit" class="btn btn-default" name="followsUser" value="User folgen">
                     </form>
                 {%  endif %}
 
                 <form method="get" action="/follow" name="showFriends">
-                    <input type="submit" class="btn btn-default" value="Freunde anzeigen">
+                    <input type="submit" class="btn btn-default" name="userName" value="Freunde anzeigen">
                 </form><br>
 
 
