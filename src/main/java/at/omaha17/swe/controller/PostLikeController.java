@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.net.URLEncoder;
 
@@ -36,8 +37,11 @@ public class PostLikeController extends HttpServlet {
         //Which profile are we on
         String currentPageUserName = request.getParameter("userName");
 
+        HttpSession session=request.getSession(false);
+        String myUserName = (String)session.getAttribute("userName");
+
         try {
-            MessageManager.likeMessage(postID,currentPageUserName);
+            MessageManager.likeMessage(postID,myUserName);
 
             response.sendRedirect(("/wall?userName="+ URLEncoder.encode(currentPageUserName, "UTF-8")+"&userNotFound="+0));
 
