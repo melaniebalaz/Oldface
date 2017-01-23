@@ -26,4 +26,8 @@ public class Post extends Message {
         comments.add(comment);
     }
 
+    public void delComment(Comment comment) {
+        comments.remove(comment);
+    }
+
 }
