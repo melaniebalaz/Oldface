@@ -11,4 +11,5 @@ public interface MessageDAO {
     public Message getMessageById(String messageId) throws IOException, ClassNotFoundException, IllegalArgumentException;
     public Vector<Post> getPostsByUsername(String username) throws IOException, ClassNotFoundException;
     public Vector<Post> getPostList() throws IOException, ClassNotFoundException;
+    public Vector<Message> getMessageList() throws IOException, ClassNotFoundException;
 }

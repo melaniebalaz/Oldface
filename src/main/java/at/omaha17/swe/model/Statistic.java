@@ -3,13 +3,13 @@ package at.omaha17.swe.model;
 public class Statistic {
 
     private String userCount;
-    private int numberOfPosts;
-    private int postsPerDay;
-    private int postLength;
+    private String newUserCount;
+    private String loginCount;
+    private String seniorStatus;
+    private String messageCount;
+    private String postStatistic;
+    private String commentStatistic;
     private int numberOfCommentsPerPost;
-    private int commentsPerDay;
-    private int commentLength;
-    private int loginsPerDay;
     private double avgPostsPerUser;
 
     public String getUserCount() {
@@ -20,28 +20,52 @@ public class Statistic {
         this.userCount = userCount;
     }
 
-    public int getNumberOfPosts() {
-        return numberOfPosts;
+    public String getNewUserCount() {
+        return newUserCount;
     }
 
-    public void setNumberOfPosts(int numberOfPosts) {
-        this.numberOfPosts = numberOfPosts;
+    public void setNewUserCount(String newUserCount) {
+        this.newUserCount = newUserCount;
     }
 
-    public int getPostsPerDay() {
-        return postsPerDay;
+    public String getLoginCount() {
+        return loginCount;
     }
 
-    public void setPostsPerDay(int postsPerDay) {
-        this.postsPerDay = postsPerDay;
+    public void setLoginCount(String loginCount) {
+        this.loginCount = loginCount;
     }
 
-    public int getPostLength() {
-        return postLength;
+    public String getSeniorStatus() {
+        return seniorStatus;
     }
 
-    public void setPostLength(int postLength) {
-        this.postLength = postLength;
+    public void setSeniorStatus(String seniorStatus) {
+        this.seniorStatus = seniorStatus;
+    }
+
+    public String getMessageCount() {
+        return messageCount;
+    }
+
+    public void setMessageCount(String messageCount) {
+        this.messageCount = messageCount;
+    }
+
+    public String getPostStatistic() {
+        return postStatistic;
+    }
+
+    public void setPostStatistic(String postStatistic) {
+        this.postStatistic = postStatistic;
+    }
+
+    public String getCommentStatistic() {
+        return commentStatistic;
+    }
+
+    public void setCommentStatistic(String commentStatistic) {
+        this.commentStatistic = commentStatistic;
     }
 
     public int getNumberOfCommentsPerPost() {
@@ -50,30 +74,6 @@ public class Statistic {
 
     public void setNumberOfCommentsPerPost(int numberOfCommentsPerPost) {
         this.numberOfCommentsPerPost = numberOfCommentsPerPost;
-    }
-
-    public int getCommentsPerDay() {
-        return commentsPerDay;
-    }
-
-    public void setCommentsPerDay(int commentsPerDay) {
-        this.commentsPerDay = commentsPerDay;
-    }
-
-    public int getCommentLength() {
-        return commentLength;
-    }
-
-    public void setCommentLength(int commentLength) {
-        this.commentLength = commentLength;
-    }
-
-    public int getLoginsPerDay() {
-        return loginsPerDay;
-    }
-
-    public void setLoginsPerDay(int loginsPerDay) {
-        this.loginsPerDay = loginsPerDay;
     }
 
     public double getAvgPostsPerUser() {
