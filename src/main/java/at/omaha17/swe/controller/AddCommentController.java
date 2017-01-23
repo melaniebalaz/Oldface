@@ -40,7 +40,7 @@ public class AddCommentController extends HttpServlet {
         }
 
         try {
-            MessageManager.addComment(postID, currentPageUserName, comment);
+            MessageManager.addComment(postID, myUserName, comment);
             response.sendRedirect(("/wall?userName="+ URLEncoder.encode(currentPageUserName, "UTF-8")+"&userNotFound="+0));
         }catch(TechnicalException exception){
             renderer.dispatcherFor("/WEB-INF/templates/error/error.twig")
