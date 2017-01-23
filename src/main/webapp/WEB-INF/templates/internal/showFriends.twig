@@ -10,14 +10,13 @@
 			{{ name }} - Friends
 		</h2>
 
-        <input type="hidden" name="userName" value={{ name }}>
-        <input type="hidden" name="friends" value={{ followers }}>
+
         <hr>
         <div class="container">
             {% for friend in friends %}
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h4> <span class="blue-text "> {{followers.name}} </span></h4>
+                        <h4> <span class="blue-text "> {{friend.Username}} </span></h4>
                     </div>
                     <!--<div class="panel-body">
                         <form method="post" action="/removeFriend" name="removeFriend">
