@@ -32,13 +32,6 @@ public class AddCommentController extends HttpServlet {
         HttpSession session=request.getSession(false);
         String myUserName = (String) session.getAttribute("userName");
 
-
-        Boolean myWall = false;
-        //Is it my own wall
-        if (currentPageUserName.equals(myUserName)){
-            myWall = true;
-        }
-
         try {
             MessageManager.addComment(postID, myUserName, comment);
             response.sendRedirect(("/wall?userName="+ URLEncoder.encode(currentPageUserName, "UTF-8")+"&userNotFound="+0));
