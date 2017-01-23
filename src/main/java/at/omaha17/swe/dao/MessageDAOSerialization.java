@@ -100,4 +100,16 @@ public class MessageDAOSerialization implements MessageDAO {
         return postList;
     }
 
+    @SuppressWarnings("unchecked")
+    public Vector<Message> getMessageList() throws IOException, ClassNotFoundException {
+
+        if (!file.exists()) return null;
+
+        ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(file));
+        Vector<Message> messageList = (Vector<Message>) objectInputStream.readObject();
+        objectInputStream.close();
+
+        return messageList;
+    }
+
 }
