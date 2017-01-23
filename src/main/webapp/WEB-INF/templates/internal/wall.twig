@@ -55,12 +55,14 @@
 
                 {% if myWall == false %}
                     <form method="post" action="/follow" name="followsUser">
-                        <input type="submit" class="btn btn-default" name="followsUser" value="User folgen">
-                    </form>
+                        <input type="hidden" name="followsUser" value={{ name }}>
+                        <input type="submit" class="btn btn-default" value="User folgen">
+                    </form><br>
                 {%  endif %}
 
                 <form method="get" action="/follow" name="showFriends">
-                    <input type="submit" class="btn btn-default" name="userName" value="Freunde anzeigen">
+                    <input type="hidden" name="userName" value={{ name }}>
+                    <input type="submit" class="btn btn-default"  value="Freunde anzeigen">
                 </form><br>
 
 
