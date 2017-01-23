@@ -37,6 +37,21 @@ public class MessageManager {
     public static void deleteMessage(String messageId) throws TechnicalException {
 
         try {
+            Message message = messageDAO.getMessageById(messageId);
+
+            if (message instanceof Post)
+                //delete all comments related with the given post
+                for (Comment comment : ((Post) message).getComments())
+                    messageDAO.deleteMessage(comment);
+
+            if (message instanceof Comment) {
+                //cleanup relation from post to comment
+                Post post = ((Comment) message).getRelatedPost();
+                post.delComment((Comment) message);
+                messageDAO.saveMessage(post);
+            }
+
+            //finally delete the given message
             messageDAO.deleteMessage(messageDAO.getMessageById(messageId));
 
         } catch (IOException|ClassNotFoundException|IllegalArgumentException e) { throw new TechnicalException(e); }
