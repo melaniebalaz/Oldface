@@ -20,9 +20,9 @@ What I wish we had used but had no time for:
 * JavaScript for frontend stuff (Not having to handle everything with a servlet would be nice)
 
 The workload was split the following way:
-* Myself: Controllers, Basic Setup of the Project, Maven Setup, Twig Setup and all the basic twig files (navbar, base.twig, etc.), some frontend-design
-* Hannes: All the Serialize stuff + the Logic + Statistics
-* Stefan & Valentin: Model, Frontend
+* **Myself:** Controllers, Basic Setup of the Project, Maven Setup, Twig Setup and all the basic twig files (navbar, base.twig, etc.), some frontend-design
+* **Hannes:** All the Serialize stuff + the Logic + Statistics
+* **Stefan & Valentin:** Model, Frontend
 
 What I learned:
 * GET Requests should not change anything in the backend. If a change should happen, use POST.
